@@ -1,0 +1,18 @@
+{
+    "admins": [1156896214,6500319575],
+    "port": 9339,
+    "serverName": "Tailer",
+    "BotPREMIUM": "@tailerbrawlbot",
+    "updateLink": "https://t.me/tailerbrawl/42",
+    "disableQueuebugtxtFile": true,
+    "queue": {
+        "maxSize": 8192,
+        "disconnectSessionOnOverfilling": true,
+        "enableOverfillingWarning": true
+    },
+    "cryptoKey": "0c7901240f1c21eec1cef729d0d41f58b3a9b7f6",
+    "major": 24,
+    "session": {
+        "timeoutSeconds": 32
+    }
+}
