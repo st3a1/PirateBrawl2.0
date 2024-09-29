@@ -7,12 +7,14 @@ const MatchMakingStatusMessage = require("./MatchMakingStatusMessage")
 
 
 class MatchRequestMessage extends PiranhaMessage {
-  constructor (bytes, session) {
+  constructor (bytes, session, PlayersFound, MaxPlayers) {
     super(session)
     this.session = session
     this.id = 14103
     this.version = 0
     this.stream = new ByteStream(bytes)
+    this.PlayersFound = 0
+    this.MaxPlayers = 0
   }
 
   async decode () {
@@ -28,7 +30,11 @@ class MatchRequestMessage extends PiranhaMessage {
   }
 
   async process () {
-	new MatchMakingStatusMessage(this.session).send();
+  if (typeof global.players !== 'number' || isNaN(global.players)) {
+    global.players = 0; 
+  }
+  global.players += 6
+	new MatchMakingStatusMessage(this.session, this.PlayersFound, this.MaxPlayers).send();
   }
 }
 

@@ -89,7 +89,7 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.stream.writeVInt(this.account.Resources.Tickets) // Tickets
     this.stream.writeVInt(0)
 
-    this.stream.writeDataReference(16, 30)//brawlerID
+    this.stream.writeDataReference(16, this.session.BrawlerID)//brawlerID
 
     this.stream.writeString("BY")
     this.stream.writeString(this.account.AuthorCode)//authorCode

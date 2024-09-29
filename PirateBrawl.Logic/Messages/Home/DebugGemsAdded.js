@@ -3,7 +3,7 @@ const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
 const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 
-const Events = require('../../Utils/Events');
+const Events = require('../../../PirateBrawl.Server/Utils/Events');
 
 class DebugGemsAdded extends PiranhaMessage {
   constructor(bytes, session) {

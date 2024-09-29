@@ -1,6 +1,7 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const MatchMakingCancelledMessage = require('./MatchMakingCancelledMessage');
+const mm = require('./MatchMakingStatusMessage');
 //const Gameroom = require('../../Laser.Server/Gameroom');
 //const d = new Gameroom();
 
@@ -28,6 +29,10 @@ class CancelMatchmakingMessage extends PiranhaMessage {
     }else{
     */
       this.session.inMatchmaking = false;
+      if (global.players != 0) {
+      global.players -= 1
+      }
+      console.warn(global.players)
       new MatchMakingCancelledMessage(this.session).send();
     //}
   }

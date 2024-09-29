@@ -2,7 +2,7 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
 //database Calling
-const database = require("../../Laser.Server/db")
+const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 const SetInvitesBlockedMessageOk = require('./SetInvitesBlockedMessageOk')
 
 class SetInvitesBlockedMessage extends PiranhaMessage {
