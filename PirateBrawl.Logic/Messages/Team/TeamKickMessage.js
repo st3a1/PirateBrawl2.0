@@ -1,13 +1,13 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
-const database = require("../../Laser.Server/db")
+const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 
 const TeamMessage = require('./TeamMessage');
 const TeamChatMessages = require('./TeamChatMessages');
 const TeamLeaveMessages = require('./TeamLeaveMessages');
 
-const Gameroom = require('../../Laser.Server/Gameroom');
+const Gameroom = require('../../../PirateBrawl.Server/Utils/Gameroom');
 
 class TeamKickMessage extends PiranhaMessage {
   constructor (bytes, session) {

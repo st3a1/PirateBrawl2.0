@@ -89,7 +89,7 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.stream.writeVInt(this.account.Resources.Tickets) // Tickets
     this.stream.writeVInt(0)
 
-    this.stream.writeDataReference(16, 32)//brawlerID
+    this.stream.writeDataReference(16, 30)//brawlerID
 
     this.stream.writeString("BY")
     this.stream.writeString(this.account.AuthorCode)//authorCode
@@ -197,7 +197,11 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.stream.writeBoolean(true)  // Box boolean
 
     this.stream.writeVInt(0)  // array
-
+    /*
+    this.stream.writeDataReference(16, 32)
+    this.stream.writeInt(123)
+    this.stream.writeInt(1)
+    */
     Entrys.IntValueEntryLogicConfData(this.stream)
 
     //this.stream.writeVInt(1)

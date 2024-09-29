@@ -13,12 +13,13 @@ class MatchMakingStatusMessage extends PiranhaMessage {
   }
 
   async encode () {
-    this.stream.writeInt(this.Timer);
-    this.stream.writeInt(this.PlayersFound);//founded
-    this.stream.writeInt(this.MaxPlayers);//max player
+    this.stream.writeInt(1337);
+    this.stream.writeInt(1336);//founded
+    this.stream.writeInt(1337);//max player
     this.stream.writeInt(0);
     this.stream.writeInt(0);
-    this.stream.writeBoolean(this.UseTimer);
+    this.stream.writeBoolean(true);
+    this.stream.writeInt(12333)
   }
 }
 

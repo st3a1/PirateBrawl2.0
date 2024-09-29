@@ -4,7 +4,7 @@ const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 
 const TeamMessage = require('./TeamMessage');
-const Gameroom = require('../../Laser.Server/Gameroom');
+const Gameroom = require('../../../PirateBrawl.Server/Utils/Gameroom');
 
 const TeamInvitationMessage = require('./TeamInvitationMessage');
 

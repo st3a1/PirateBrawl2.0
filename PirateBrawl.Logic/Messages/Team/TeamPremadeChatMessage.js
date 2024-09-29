@@ -2,7 +2,7 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
 const TeamChatMessages = require('./TeamChatMessages');
-const Gameroom = require('../../Laser.Server/Gameroom');
+const Gameroom = require('../../../PirateBrawl.Server/Utils/Gameroom');
 
 class TeamPremadeChatMessage extends PiranhaMessage {
   constructor (bytes, session) {

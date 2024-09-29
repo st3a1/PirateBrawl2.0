@@ -2,7 +2,8 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
 const LoginFailedMessage = require('../Account/LoginFailedMessage');
-const MatchMakingCancelledMessage = require('./MatchMakingCancelledMessage');
+//const MatchMakingCancelledMessage = require('./MatchMakingCancelledMessage');
+const MatchMakingStatusMessage = require("./MatchMakingStatusMessage")
 
 
 class MatchRequestMessage extends PiranhaMessage {
@@ -27,7 +28,7 @@ class MatchRequestMessage extends PiranhaMessage {
   }
 
   async process () {
-	new MatchMakingCancelledMessage(this.session).send();
+	new MatchMakingStatusMessage(this.session).send();
   }
 }
 

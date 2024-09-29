@@ -1,8 +1,8 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const MatchMakingCancelledMessage = require('./MatchMakingCancelledMessage');
-const Gameroom = require('../../Laser.Server/Gameroom');
-const d = new Gameroom();
+//const Gameroom = require('../../Laser.Server/Gameroom');
+//const d = new Gameroom();
 
 class CancelMatchmakingMessage extends PiranhaMessage {
   constructor (bytes, session) {
@@ -18,7 +18,7 @@ class CancelMatchmakingMessage extends PiranhaMessage {
   }
 
   async process () {
-    if(this.session.roomID > 0){
+    /*if(this.session.roomID > 0){
       const room = d.getRoomById(this.session.roomID);
       room.players.forEach(e => {
           d.setPlayerReady(this.session.roomID, e.lowID, false)
@@ -26,9 +26,10 @@ class CancelMatchmakingMessage extends PiranhaMessage {
           new MatchMakingCancelledMessage(this.session).sendLowID(e.lowID);
       });
     }else{
+    */
       this.session.inMatchmaking = false;
       new MatchMakingCancelledMessage(this.session).send();
-    }
+    //}
   }
 }
 

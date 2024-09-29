@@ -1,8 +1,7 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
-const Entry = require('../../Utils/Entry/Entry');
-
+const Entry = require('../../../PirateBrawl.Titan/Entry/Entry');
 class TeamMessage extends PiranhaMessage {
   constructor(session, roomInfo) {
     super(session);

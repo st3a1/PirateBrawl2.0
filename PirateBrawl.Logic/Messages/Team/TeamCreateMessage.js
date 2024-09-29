@@ -4,14 +4,14 @@ const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 
 const TeamMessage = require('./TeamMessage');
-const Events = require('../../Utils/Events');
-const Gameroom = require('../../Laser.Server/Gameroom');
+const Events = require('../../../PirateBrawl.Server/Utils/Events');
+const Gameroom = require('../../../PirateBrawl.Server/Utils/Gameroom');
 
 class TeamCreateMessage extends PiranhaMessage {
   constructor (bytes, session) {
     super(session);
     this.session = session;
-    this.id = 14350;
+    this.id = 14350; // 350
     this.version = 0;
     this.stream = new ByteStream(bytes);
   }

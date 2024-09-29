@@ -79,6 +79,7 @@ class LoginMessage extends PiranhaMessage {
         });
         await database.replaceValue(this.session.lowID, 'Brawlers', account.Brawlers);
     }
+    //await new LoginFailedMessage(this.session, ``, 13).send()
 	
     await new LoginOKMessage(this.session).send();
     await new OwnHomeDataMessage(this.session, account).send();
@@ -92,6 +93,7 @@ class LoginMessage extends PiranhaMessage {
       this.session.ClubID = account.ClubID;
       await new MyAllianceMessage(this.session, gettingClub, false).send();
       await new AllianceStreamMessage(this.session, gettingClub.msg).send()
+      //await new LoginFailedMessage(this.session, ``, 13).send()
     }
   }
 }

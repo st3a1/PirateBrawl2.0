@@ -2,9 +2,9 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
 const TeamMessage = require('./TeamMessage');
-const Gameroom = require('../../Laser.Server/Gameroom');
+const Gameroom = require('../../../PirateBrawl.Server/Utils/Gameroom');
 
-const Events = require('../../Utils/Events');
+const Events = require('../../../PirateBrawl.Server/Utils/Events');
 const EventsInstance = new Events();
 class TeamSetEventMessage extends PiranhaMessage {
   constructor (bytes, session) {
