@@ -119,7 +119,7 @@ function getBrawlerArray() {
       unlocked: i === 0,
       level: 0,
       points: 0,
-      trophies: 0
+      trophies: 1337
   }));
 }
 

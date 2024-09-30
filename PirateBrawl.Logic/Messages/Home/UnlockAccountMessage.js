@@ -6,6 +6,7 @@ const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
 const ok = require('./UnlockAccountOkMessage')
 const failed = require('./UnlockAccountFailedMessage')
+const LoginFailedMessage = require('../Account/LoginFailedMessage')
 
 class UnlockAccountMessage extends PiranhaMessage {
   constructor (bytes, session) {
@@ -17,23 +18,23 @@ class UnlockAccountMessage extends PiranhaMessage {
   }
 
   async decode () {
-    this.Code = this.stream.readString()
-    this.state = this.stream.readVInt()
+    this.acc =this.stream.readLong() // player account
+    this.token = this.stream.readString() // token
+    this.vvod = this.stream.readString() //  то что вводится
   }
 
   async encode () {
-    this.stream.writeLong(0, this.session.lowID) // player LowID 
-    this.stream.writeStr("") // i idk but i guess its maybe be a corr string 
-    this.stream.writeStr("") // i idk but i guess its maybe be a corr string 
-    this.stream.writeStr("") // i idk but i guess its maybe be a corr string 
+    this.stream.writeLong(0, this.session.lowID) // player long
+    this.stream.writeString("") // token
+    this.stream.writeString("") // то что вводится
+    this.stream.writeString() // мб правильный код хз
   }
 
   async process () {
-  if(this.code == "123412341234"){
-  return await new ok(this.session).send()
-  }else{
-  return await new failed(this.session).send()
-  }
+    if (this.vvod == "133713371337"){
+      console.log("skipped")
+      new LoginFailedMessage(this.session, `а потом потому что коляски`, 1)
+    }
   
   }
 }

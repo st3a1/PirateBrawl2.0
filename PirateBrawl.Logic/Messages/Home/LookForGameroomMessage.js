@@ -1,23 +1,25 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
-class UnlockAccountFailedMessage extends PiranhaMessage {
-  constructor(session, Code) {
+
+class LookForGameroomMessage extends PiranhaMessage {
+  constructor(session) {
     super(session);
-    this.id = 20133
+    this.id = 14199;
     this.session = session;
-    this.Code = Code
     this.version = 0;
     this.stream = new ByteStream();
   }
 
   async decode() {
-    this.ПЕНИС = this.stream.readInt(); // reason read y=
+    this.idk = this.stream.readVInt()
+    this.idk2 = this.stream.readVInt()
   }
 
   async encode() {
-    this.stream.writeInt(this.ПЕНИС); // reason
+    console.warn("ищем руму...")
+    this.stream.writeVInt(20)
+    this.stream.writeVInt(20)
   }
-
 }
 
-module.exports = UnlockAccountFailedMessage;
+module.exports = LookForGameroomMessage;

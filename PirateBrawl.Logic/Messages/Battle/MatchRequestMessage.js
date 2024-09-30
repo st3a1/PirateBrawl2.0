@@ -33,8 +33,8 @@ class MatchRequestMessage extends PiranhaMessage {
   if (typeof global.players !== 'number' || isNaN(global.players)) {
     global.players = 0; 
   }
-  global.players += 6
-	new MatchMakingStatusMessage(this.session, this.PlayersFound, this.MaxPlayers).send();
+  global.players += 1
+	new MatchMakingStatusMessage(this.session, this.EventSlot).send();
   }
 }
 

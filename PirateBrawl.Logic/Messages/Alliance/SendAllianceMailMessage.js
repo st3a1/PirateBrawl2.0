@@ -43,7 +43,7 @@ class SendAllianceMailMessage extends PiranhaMessage {
         await database.replaceValueClub(this.session.ClubID, 'Notification', clubdb.Notification);
 
     } catch (error) {
-        console.error('УДАЛИТЬ АККАУНТ НАХУЙ:', error);
+        console.error('catched error:', error);
 
     }
 }
