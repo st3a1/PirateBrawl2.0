@@ -9,6 +9,7 @@ class MessageFactory {
 
     const directories = [
       "../PirateBrawl.Logic/Messages/Account",
+      "../PirateBrawl.Logic/Messages/Alliance/",
       "../PirateBrawl.Logic/Messages/Battle",
       "../PirateBrawl.Logic/Messages/Home",
       "../PirateBrawl.Logic/Messages/Ranking",

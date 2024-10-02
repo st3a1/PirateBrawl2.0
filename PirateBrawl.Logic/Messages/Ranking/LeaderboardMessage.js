@@ -84,7 +84,7 @@ class LeaderboardMessage extends PiranhaMessage {
     this.stream.writeVInt(this.type)
     this.stream.writeVInt(0)
 
-    this.stream.writeString("BY")
+    this.stream.writeString("RU")
   }
 }
 

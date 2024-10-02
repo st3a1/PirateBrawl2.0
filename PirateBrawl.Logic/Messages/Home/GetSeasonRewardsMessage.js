@@ -1,27 +1,4 @@
-/*const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
-const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
-const SeasonRewardsMessage = require("./SeasonRewardsMessage")
 
-class GetSeasonRewardsMessage extends PiranhaMessage {
-  constructor(session) {
-    super(session);
-    this.id = 14277;
-    this.session = session;
-    this.version = 0;
-    this.stream = new ByteStream();
-  }
-
-  async decode() {
-    this.type = this.stream.readVInt()
-  }
-
-  async process() {
-    new SeasonRewardsMessage(this.session).send()
-  }
-}
-
-module.exports = GetSeasonRewardsMessage;
-*/
 
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")

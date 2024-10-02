@@ -103,6 +103,7 @@ class LoginMessage extends PiranhaMessage {
       await new MyAllianceMessage(this.session, gettingClub, false).send();
       await new AllianceStreamMessage(this.session, gettingClub.msg).send()
     }
+    console.log(this.session.Country)
   }
 }
 

@@ -20,9 +20,9 @@ class SeasonRewardsMessage extends PiranhaMessage {
         this.stream.writeVInt(1611) // starpoints reward
         this.stream.writeVInt(1999) // trophies after
     }else if(this.type === 4) { // челендж какой то наверное по типу псж
-    // лень
-    }else if(this.type === 6) { // special chempeonad
     // потом, в 24 нету
+    }else if(this.type === 6) { // special chempeonad
+    // потом, в 24 нету 
     }
   }
 }

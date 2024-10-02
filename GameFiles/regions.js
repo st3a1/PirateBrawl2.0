@@ -1,5 +1,5 @@
 const parse = require('./CSVParser');
-const regionsData = parse('./csv_logic/regions.csv');
+const regionsData = parse('./GameFiles/csv_logic/regions.csv');
 
 function getregion(num) {
     if (num >= 0 && num < regionsData.length) {

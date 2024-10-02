@@ -2,6 +2,7 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
 const Entry = require('../../../PirateBrawl.Titan/Entry/Entry');
+const LoginFailedMessage = require('../Account/LoginFailedMessage');
 const Entrys = new Entry();
 
 class PlayerProfileMessage extends PiranhaMessage {
@@ -16,6 +17,7 @@ class PlayerProfileMessage extends PiranhaMessage {
   }
 
   async encode() {
+
     this.stream.writeLogicLong(0, this.account.lowID)
     this.stream.writeVInt(0)
 
@@ -68,7 +70,10 @@ class PlayerProfileMessage extends PiranhaMessage {
     }else{
       this.stream.writeVInt(0)
       this.stream.writeVInt(0)
-    }
+      }
+  }
+  async process(){   
+;
   }
 }
 

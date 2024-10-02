@@ -1,6 +1,6 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
-const Alliance = require("../../../PirateBrawl.Titan/Entry/");
+const Alliance = require("../../../PirateBrawl.Titan/Entry/Alliance");
 
 class AllianceDataMessage extends PiranhaMessage {
   constructor(c, d, e) {

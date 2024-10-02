@@ -6,6 +6,7 @@ const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 const TeamMessage = require('./TeamMessage');
 const Events = require('../../../PirateBrawl.Server/Utils/Events');
 const Gameroom = require('../../../PirateBrawl.Server/Utils/Gameroom');
+const DisconnectedMessage = require('../Home/DisconnectedMessage');
 
 class TeamCreateMessage extends PiranhaMessage {
   constructor (bytes, session) {

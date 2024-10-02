@@ -2,6 +2,7 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 const PlayerProfileMessage = require("./PlayerProfileMessage");
+const LoginFailedMessage = require('../Account/LoginFailedMessage');
 class GetPlayerProfileMessage extends PiranhaMessage {
   constructor(c, d) {
     super(d);
@@ -15,12 +16,13 @@ class GetPlayerProfileMessage extends PiranhaMessage {
   }
   async ['process']() {
     const c = await database.getAccount(this.lowID);
-    if (c.ClubID !== 0x0) {
+      if(c.ClubID !== 0x0 ) {
       const d = await database.getClub(c.ClubID);
       new PlayerProfileMessage(this.session, c, d).send();
     } else {
       new PlayerProfileMessage(this.session, c, null).send();
     }
+
   }
 }
 module.exports = GetPlayerProfileMessage;

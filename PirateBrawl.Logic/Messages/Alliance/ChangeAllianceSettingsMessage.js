@@ -1,7 +1,7 @@
-const PiranhaMessage = require('../../Utils/PiranhaMessage')
-const ByteStream = require("../../Utils/ByteStream")
+const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
+const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
-const database = require("../../Laser.Server/db")
+const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 const MyAllianceMessage = require("./MyAllianceMessage");
 const AllianceResponseMessage = require('./AllianceResponseMessage');
 const AllianceStreamEntryMessage = require("./AllianceStreamEntryMessage");

@@ -91,12 +91,16 @@ class OwnHomeDataMessage extends PiranhaMessage {
 
     this.stream.writeDataReference(16, this.session.BrawlerID)//brawlerID
 
-    this.stream.writeString("BY")
+    this.stream.writeString("RU")
     this.stream.writeString(this.account.AuthorCode)//authorCode
 
 
     Entrys.IntValueEntryLogicDailyData(this.stream,this.session)
-    this.stream.writeVInt(0)  // array
+    this.stream.writeVInt(1)  // cooldown entry
+    this.stream.writeVInt(14)
+    this.stream.writeDataReference(14, 14)
+    this.stream.writeVInt(14)
+
     this.stream.writeVInt(0)  // array
     this.stream.writeVInt(0)  // array
     this.stream.writeVInt(0)  // array

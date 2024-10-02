@@ -48,7 +48,8 @@ pool.execute(`CREATE TABLE IF NOT EXISTS accounts (
   lastOnline TEXT,
   Friends JSON,
   Indicators JSON,
-  Banned BOOLEAN
+  Banned BOOLEAN,
+  Country TEXT
 )`);
 
 pool.execute(`CREATE TABLE IF NOT EXISTS token_lowID (
@@ -62,8 +63,8 @@ async function createAccount(token) {
     const [rows, fields] = await pool.execute(`INSERT INTO accounts (
       token, Trophies, HightTrophies, TrophyRoadTier, Experience, Thumbnail, Namecolor, Resources,
       BrawlerID, SkinID,AuthorCode, Name, ClubID, ClubRole, Status, Shop, Skins,
-      Notification, Brawlers, Skills, lastGame, lastOnline, Friends, Indicators, Banned
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      Notification, Brawlers, Skills, lastGame, lastOnline, Friends, Indicators, Banned, Country
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
     [
       token,
       0, // Trophies
@@ -101,7 +102,8 @@ async function createAccount(token) {
         "SOLOWINS": 0,
         "DUOWINS": 0,
       }),// Indicators
-      false // is bannded boolean булен 
+      false, // is bannded boolean булен 
+      "RU"
     ]);
     
     const newAccountId = rows.insertId;
