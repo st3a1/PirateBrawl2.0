@@ -179,7 +179,7 @@ process.on("uncaughtException", e => Warn(e.stack));
 
 process.on("unhandledRejection", e => Warn(e.stack));
 
-
+/*
 const bot = require('./bot');
 bot.launch()
   .then(() => {
@@ -187,3 +187,4 @@ bot.launch()
   })
   .catch((err) => {
   });
+  */

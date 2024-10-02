@@ -2,7 +2,7 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 const LoginFailedMessage = require('../../Messages/Account/LoginFailedMessage')
-const config = require("../config.json")
+const config = require("../../../config.json")
 
 const fs = require('fs').promises;
 class LogicSetPlayerNameColorCommand extends PiranhaMessage{

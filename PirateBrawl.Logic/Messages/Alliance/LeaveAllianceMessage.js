@@ -8,7 +8,7 @@ class LeaveAllianceMessage extends PiranhaMessage {
   constructor(c, d) {
     super(d);
     this.session = d;
-    this.id = 0x37e4;
+    this.id = 14308;
     this.version = 0x0;
     this.stream = new ByteStream(c);
   }

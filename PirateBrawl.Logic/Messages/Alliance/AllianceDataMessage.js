@@ -5,7 +5,7 @@ const Alliance = require("../../../PirateBrawl.Titan/Entry/");
 class AllianceDataMessage extends PiranhaMessage {
   constructor(c, d, e) {
     super(c);
-    this.id = 0x5eed;
+    this.id = 24301;
     this.session = c;
     this.version = 0x1;
     this.club = d;

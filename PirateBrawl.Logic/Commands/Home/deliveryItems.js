@@ -14,6 +14,7 @@ class deliveryItems extends PiranhaMessage {
       this.fipi = fipi
       this.TrophyRoadTier = TrophyRoadTier
       this.items = []
+      this.commandID = 1337
   }
 async encode() {
   this.stream.writeVInt(203);
@@ -39,6 +40,9 @@ async encode() {
   this.stream.writeVInt(6);
   this.stream.writeVInt(this.TrophyRoadTier+1);
   this.stream.writeVInt(0);
+}
+async getMessageType() {
+  return 1337
 }
 }
 

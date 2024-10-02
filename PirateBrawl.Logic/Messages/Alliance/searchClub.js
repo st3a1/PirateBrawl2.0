@@ -6,7 +6,7 @@ class SearchAlliancesMessage extends PiranhaMessage {
   constructor(c, d) {
     super(d);
     this.session = d;
-    this.id = 0x37f4;
+    this.id = 14324;
     this.version = 0x0;
     this.stream = new ByteStream(c);
   }

@@ -8,6 +8,7 @@ class LogicSetSupportedCreatorCommand extends PiranhaMessage {
         this.session = session;
         this.version = 1;
         this.stream = new ByteStream();
+        this.commandID = 1337
     }
 
     async encode() {

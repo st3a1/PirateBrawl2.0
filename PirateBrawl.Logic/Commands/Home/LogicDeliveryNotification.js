@@ -11,6 +11,7 @@ class LogicDeliveryNotification extends PiranhaMessage {
       this.SkinID = SkinID;
       this.BrawlerID = BrawlerID;
       this.Gems = Gems;
+      this.commandID = 1337
   }
     async encode() {
         let math = 0 ;

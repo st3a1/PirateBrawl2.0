@@ -1,4 +1,4 @@
-const ByteStream = require('../Utils/ByteStream'); // Подключаем ByteStream
+const ByteStream = require('../Utils/ByteStream');
 
 class VisionUpdate {
     constructor() {

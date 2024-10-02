@@ -8,7 +8,7 @@ const Gameroom = require('../../../PirateBrawl.Server/Utils/Gameroom');
 
 const TeamGameStartingMessage = require('./TeamGameStartingMessage');
 const MatchMakingStatusMessage = require('../Battle/MatchMakingStatusMessage');
-const GameMatchmakingManager = require('../../Laser.Logic/GameMatchmakingManager');
+//const GameMatchmakingManager = require('../../Laser.Logic/GameMatchmakingManager');
 
 
 class TeamSetMemberReadyMessage extends PiranhaMessage {
@@ -38,7 +38,7 @@ class TeamSetMemberReadyMessage extends PiranhaMessage {
       if(submited == roomInfo.players.length){
         for (const ids of roomInfo.players) {
           new TeamGameStartingMessage(this.session, roomInfo.mapID).sendLowID(ids.lowID)
-          GameMatchmakingManager.Enqueue(this.session, roomInfo.mapSlot);
+          //GameMatchmakingManager.Enqueue(this.session, roomInfo.mapSlot);
         }
       }
     }

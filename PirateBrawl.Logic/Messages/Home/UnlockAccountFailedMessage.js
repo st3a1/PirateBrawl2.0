@@ -9,13 +9,8 @@ class UnlockAccountFailedMessage extends PiranhaMessage {
     this.version = 0;
     this.stream = new ByteStream();
   }
-
-  async decode() {
-    this.ПЕНИС = this.stream.readInt(); // reason read y=
-  }
-
   async encode() {
-    this.stream.writeInt(this.ПЕНИС); // reason
+    this.stream.writeInt(0); // reason
   }
 
 }

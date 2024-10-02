@@ -10,7 +10,7 @@ class ChangeAllianceMemberRoleMessage extends PiranhaMessage {
   constructor(c, d) {
     super(d);
     this.session = d;
-    this.id = 0x37e2;
+    this.id = 14306;
     this.version = 0x0;
     this.stream = new ByteStream(c);
     this.clubId = null;

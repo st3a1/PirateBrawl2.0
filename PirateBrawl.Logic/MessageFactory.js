@@ -58,7 +58,6 @@ class MessageFactory {
     }
   }
 
-  // Специальный метод для загрузки LoginMessage
   loadLoginMessage(filePath) {
     const fullPath = path.join(__dirname, filePath);
 
@@ -70,11 +69,10 @@ class MessageFactory {
       this.messagesList.push(MessageInstance.id);
     } catch (err) {
       console.error(`Error loading LoginMessage from "${filePath}":`, err);
-      process.exit(1); // Завершение работы программы, если не удается загрузить LoginMessage
+      process.exit(1);
     }
   }
 
-  // Получить сообщение по ID
   getMessage(id) {
     return this.messagesList.includes(id) ? this.messages[id] : null;
   }

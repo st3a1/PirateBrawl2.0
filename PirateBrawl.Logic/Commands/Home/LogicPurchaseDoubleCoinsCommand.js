@@ -2,7 +2,7 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 
-const config = require('../config.json');
+const config = require("../../../config.json")
 const LoginFailedMessage = require('../../Messages/Account/LoginFailedMessage')
 const fs = require('fs');
 class LogicPurchaseDoubleCoinsCommand extends PiranhaMessage{
@@ -27,6 +27,13 @@ class LogicPurchaseDoubleCoinsCommand extends PiranhaMessage{
             account.Resources.Gems -= 50
             await database.replaceValue(account.lowID, 'Resources', account.Resources);
         }
-    }}
+    }
+    
+    async getMessageType() {
+        return 1337
+    }
+
+}
+
 
 module.exports = LogicPurchaseDoubleCoinsCommand

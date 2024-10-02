@@ -6,7 +6,7 @@ const AllianceHeader = require("../../../PirateBrawl.Titan//Entry/AllianceHeader
 class MyAllianceMessage extends PiranhaMessage {
   constructor(c, d, e) {
     super(c);
-    this.id = 0x5f4f;
+    this.id = 24399;
     this.session = c;
     this.leave = e;
     this.version = 0x1;

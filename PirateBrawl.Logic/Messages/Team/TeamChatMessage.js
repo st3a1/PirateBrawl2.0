@@ -15,6 +15,15 @@ class TeamChatMessage extends PiranhaMessage {
 
   async decode () {
     this.msg = this.stream.readString();
+    const forbiddenWords = ["мать", "сука", "блядина"];
+    const regex = new RegExp(forbiddenWords.join("|"), "gi");
+    const matches = this.msg.match(regex);
+
+    if (matches && matches.length > 2) {
+      this.msg = "*".repeat(this.msg.length);
+    }else{
+      this.msg = this.msg.replace(regex, (match) => "*".repeat(match.length));
+    }
   }
 
   async process () {
@@ -34,4 +43,5 @@ class TeamChatMessage extends PiranhaMessage {
     }
   }
 }
+
 module.exports = TeamChatMessage;

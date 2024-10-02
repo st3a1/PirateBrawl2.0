@@ -7,12 +7,21 @@ class ChatToAllianceStreamMessage extends PiranhaMessage {
   constructor(c, d) {
     super(d);
     this.session = d;
-    this.id = 0x37eb;
+    this.id = 14315;
     this.version = 0x0;
     this.stream = new ByteStream(c);
   }
   async ["decode"]() {
     this.msg = this.stream.readString();
+    const forbiddenWords = ["мать", "сука", "блядина"];
+    const regex = new RegExp(forbiddenWords.join("|"), "gi");
+    const matches = this.msg.match(regex);
+
+    if (matches && matches.length > 2) {
+      this.msg = "*".repeat(this.msg.length);
+    }else{
+      this.msg = this.msg.replace(regex, (match) => "*".repeat(match.length));
+    }
   }
   async ["process"]() {
     const c = {

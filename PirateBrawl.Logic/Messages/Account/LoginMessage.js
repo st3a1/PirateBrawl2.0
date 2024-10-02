@@ -56,9 +56,13 @@ class LoginMessage extends PiranhaMessage {
       await database.createAccount(this.session.token);
     }
 
+
     const account = await database.getAccountToken(this.session.token);
     if(account == null) return await new LoginFailedMessage(this.session, `Ваш аккаунт не найден, нужно удалить данные об игре!`, 18).send();
 
+    if(account.Banned){
+      await new LoginFailedMessage(this.session, ``, 13).send()
+    }
   
     this.session.lowID = account.lowID;
     this.session.Resources = account.Resources;
@@ -73,13 +77,18 @@ class LoginMessage extends PiranhaMessage {
                     unlocked: i === 0,
                     level: 0,
                     points: 0,
-                    trophies: 0
+                    trophies: 0,
+                    r10: false,
+                    r15: false,
+                    r20: false,
+                    r25: false,
+                    r30: false,
+                    r35: false
                 });
             }
         });
         await database.replaceValue(this.session.lowID, 'Brawlers', account.Brawlers);
     }
-    await new LoginFailedMessage(this.session, ``, 13).send()
 	
     await new LoginOKMessage(this.session).send();
     await new OwnHomeDataMessage(this.session, account).send();
@@ -93,7 +102,6 @@ class LoginMessage extends PiranhaMessage {
       this.session.ClubID = account.ClubID;
       await new MyAllianceMessage(this.session, gettingClub, false).send();
       await new AllianceStreamMessage(this.session, gettingClub.msg).send()
-      //await new LoginFailedMessage(this.session, ``, 13).send()
     }
   }
 }

@@ -9,7 +9,7 @@ class ChangeAllianceSettingsMessage extends PiranhaMessage {
   constructor(c, d) {
     super(d);
     this.session = d;
-    this.id = 0x37ec;
+    this.id = 14316;
     this.version = 0x0;
     this.stream = new ByteStream(c);
   }

@@ -2,8 +2,6 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 
-const config = require('../config.json');
-
 const LoginFailedMessage = require('../../Messages/Account/LoginFailedMessage')
 const fs = require('fs');
 class LogicSelectSkinCommand extends PiranhaMessage{

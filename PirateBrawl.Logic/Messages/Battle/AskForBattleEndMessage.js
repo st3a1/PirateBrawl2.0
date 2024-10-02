@@ -69,12 +69,7 @@ class AskForBattleEndMessage extends PiranhaMessage {
     }
     var game = (this.playersAmount === 10 && this.fields[0].Team === 0) ? 5 : (this.playersAmount === 6 ? 1 : (this.playersAmount === 10 ? 2 : game));
     
-    const data = await fs.readFile('../../../PirateBrawl.Titan/JSON/vips.json', 'utf8');
-    const config = JSON.parse(data);
-    const foundItem = config.find(item => item.id === this.session.lowID);
-    const vip = foundItem ? 8 : 0;
-    
-    new BattleEndMessage(this.session, this.battle_result, this.fields, this.rank, account, game, vip, this.mapID).send();
+    new BattleEndMessage(this.session, this.battle_result, this.fields, this.rank, account, game, this.mapID).send();
     await database.replaceValue(this.session.lowID, "lastGame", new Date());
   }
 }

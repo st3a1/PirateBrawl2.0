@@ -11,7 +11,8 @@ class LogicShopCommand extends PiranhaMessage {
         this.stream = new ByteStream();
         this.account = account
         this.items = items
-    }
+        this.commandID = 1337
+        }
 
     async encode() {
         this.session.Resources = this.account.Resources

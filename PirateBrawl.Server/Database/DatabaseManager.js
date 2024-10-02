@@ -47,7 +47,8 @@ pool.execute(`CREATE TABLE IF NOT EXISTS accounts (
   lastGame TEXT,
   lastOnline TEXT,
   Friends JSON,
-  Indicators JSON
+  Indicators JSON,
+  Banned BOOLEAN
 )`);
 
 pool.execute(`CREATE TABLE IF NOT EXISTS token_lowID (
@@ -61,8 +62,8 @@ async function createAccount(token) {
     const [rows, fields] = await pool.execute(`INSERT INTO accounts (
       token, Trophies, HightTrophies, TrophyRoadTier, Experience, Thumbnail, Namecolor, Resources,
       BrawlerID, SkinID,AuthorCode, Name, ClubID, ClubRole, Status, Shop, Skins,
-      Notification, Brawlers, Skills, lastGame, lastOnline, Friends, Indicators
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      Notification, Brawlers, Skills, lastGame, lastOnline, Friends, Indicators, Banned
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
     [
       token,
       0, // Trophies
@@ -99,7 +100,8 @@ async function createAccount(token) {
         "TRIOWINS": 0,
         "SOLOWINS": 0,
         "DUOWINS": 0,
-      })// Indicators
+      }),// Indicators
+      false // is bannded boolean булен 
     ]);
     
     const newAccountId = rows.insertId;
@@ -119,7 +121,13 @@ function getBrawlerArray() {
       unlocked: i === 0,
       level: 0,
       points: 0,
-      trophies: 1337
+      trophies: 0,
+      r10: false,
+      r15: false,
+      r20: false,
+      r25: false,
+      r30: false,
+      r35: false
   }));
 }
 

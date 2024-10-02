@@ -1,11 +1,11 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
-
+const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
 //database Calling
 //const database = require("../../Laser.Server/db")
 
-const ok = require('./UnlockAccountOkMessage')
-const failed = require('./UnlockAccountFailedMessage')
+const UnlockAccountOkMessage = require('./UnlockAccountOkMessage')
+const UnlockAccountFailedMessage = require('./UnlockAccountFailedMessage')
 const LoginFailedMessage = require('../Account/LoginFailedMessage')
 
 class UnlockAccountMessage extends PiranhaMessage {
@@ -20,20 +20,22 @@ class UnlockAccountMessage extends PiranhaMessage {
   async decode () {
     this.acc =this.stream.readLong() // player account
     this.token = this.stream.readString() // token
-    this.vvod = this.stream.readString() //  то что вводится
+    this.correct = this.stream.readString() //  то что вводится
   }
 
   async encode () {
     this.stream.writeLong(0, this.session.lowID) // player long
-    this.stream.writeString("") // token
+    this.stream.writeString(this.session.token) // token
     this.stream.writeString("") // то что вводится
-    this.stream.writeString() // мб правильный код хз
+    this.stream.writeString() // мб правильный код хз, мне read нулл выдал
   }
 
   async process () {
-    if (this.vvod == "133713371337"){
-      console.log("skipped")
-      new LoginFailedMessage(this.session, `а потом потому что коляски`, 1)
+    if (this.correct == "133713371337"){
+      new UnlockAccountOkMessage(this.session).send()
+      await database.replaceValue(this.session.lowID, 'Banned', false);
+    }else{
+      new LoginFailedMessage(this.session, `Код введен неправильно\n\nПерезайдите чтобы повторить процедуру...`, 1).send()
     }
   
   }

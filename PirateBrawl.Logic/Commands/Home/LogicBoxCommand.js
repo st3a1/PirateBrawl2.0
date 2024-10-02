@@ -15,6 +15,7 @@ class LogicBoxCommand extends PiranhaMessage {
         this.count = count
         this.isClaim = isClaim
         this.excludedIds = [36, 35, 33];
+        this.commandID = 1337
     }
 
     dropSPG(chance){

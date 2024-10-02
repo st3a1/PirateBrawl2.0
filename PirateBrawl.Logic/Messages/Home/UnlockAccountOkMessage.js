@@ -11,9 +11,8 @@ class UnlockAccountOkMessage extends PiranhaMessage {
   }
 
   async encode() {
-
-    this.stream.writeVInt(1);
-    this.stream.writeString("123412341234");
+    this.stream.writeLong(0, this.session.lowID) // lowid 
+    this.stream.writeString(this.session.token); // token
     
   }
 }

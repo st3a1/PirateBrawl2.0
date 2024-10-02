@@ -15,8 +15,8 @@ class LookForGameroomMessage extends PiranhaMessage {
     this.idk2 = this.stream.readVInt()
   }
 
-  async encode() {
-    console.warn("ищем руму...")
+  async encode() { // кие сiськi
+    console.warn("ищем руму...") // кто кого трахнет який кака
     this.stream.writeVInt(20)
     this.stream.writeVInt(20)
   }

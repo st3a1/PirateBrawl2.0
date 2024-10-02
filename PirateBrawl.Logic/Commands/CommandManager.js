@@ -1,27 +1,63 @@
-const fs = require('fs')
+require("../../PirateBrawl.Server/Debug/Debugger");
+
+const fs = require("fs");
+const path = require("node:path");
 
 class CommandManager {
-  constructor () {
-    this.commands = {}
+  constructor() {
+    this.commands = {};
+    this.commandList = [];
 
-    fs.readdir('../Commands/Home', (err, files) => {
-      if (err)console.log(err)
-      files.forEach(e => {
-        const Command = require(`../Commands/Home${e.replace('.js', '')}`)
-        const commandClass = new Command()
+    // Директории, в которых мы ищем команды
+    const directories = [
+      "./Home"
+    ];
 
-        this.commands[commandClass.commandID] = Command
-      })
-    })
+    directories.forEach((directory) => {
+      this.loadCommandsFromDirectory(directory);
+    });
+
+    ServerLog("Loaded Commands:", this.commandList);
   }
 
-  handle (id) {
-    return this.commands[id]
-  };
+  loadCommandsFromDirectory(directory) {
+    const fullPath = path.join(__dirname, directory);
 
-  getCommands () {
-    return Object.keys(this.commands)
+    fs.readdir(fullPath, (err, files) => {
+      if (err) {
+        console.error(`Ошибка при чтении директории "${directory}":`, err);
+        return;
+      }
+
+      files.forEach((file) => {
+        if (file.endsWith(".js")) {
+          try {
+            const Command = require(path.join(fullPath, file));
+
+            // Создаём экземпляр команды, чтобы получить commandID
+            const commandInstance = new Command();
+
+            if (commandInstance && commandInstance.commandID) {
+              this.commands[commandInstance.commandID] = Command; // Сохраняем сам класс по его commandID
+              this.commandList.push(commandInstance.commandID);
+            } else {
+              console.warn(`Файл ${file} не содержит валидного commandID.`);
+            }
+          } catch (err) {
+            console.error(`Ошибка при загрузке команды из файла "${file}":`, err);
+          }
+        }
+      });
+    });
+  }
+
+  handle(id) {
+    return this.commands[id];
+  }
+
+  getCommands() {
+    return Object.keys(this.commands);
   }
 }
 
-module.exports = CommandManager
+module.exports = CommandManager;

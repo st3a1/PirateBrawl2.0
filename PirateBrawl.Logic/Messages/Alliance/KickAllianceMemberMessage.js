@@ -9,7 +9,7 @@ class KickAllianceMemberMessage extends PiranhaMessage {
   constructor(c, d) {
     super(d);
     this.session = d;
-    this.id = 0x37e3;
+    this.id = 14307;
     this.version = 0x0;
     this.stream = new ByteStream(c);
     this.clubId = null;
