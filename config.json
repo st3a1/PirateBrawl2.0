@@ -1,7 +1,7 @@
 {
     "admins": [1156896214,6500319575],
     "port": 9339,
-    "serverName": "Tailer",
+    "serverName": "Mix Brawl",
     "BotPREMIUM": "@tailerbrawlbot",
     "updateLink": "https://t.me/tailerbrawl/42",
     "disableQueuebugtxtFile": true,
@@ -12,6 +12,8 @@
     },
     "cryptoKey": "0c7901240f1c21eec1cef729d0d41f58b3a9b7f6",
     "major": 24,
+    "maintence": true,
+    "maintenceEndTime": "2024-10-05T13:00:00Z",
     "session": {
         "timeoutSeconds": 32
     }

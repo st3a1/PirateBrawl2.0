@@ -3,7 +3,7 @@ const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const config = require("../../../config.json")
 
 class LoginFailedMessage extends PiranhaMessage {
-  constructor (session, msg, errCode) {
+  constructor (session, msg, errCode, maintenceTimer) {
     super(session)
     this.id = 20103
     this.session = session
@@ -11,6 +11,7 @@ class LoginFailedMessage extends PiranhaMessage {
     this.errCode = errCode
     this.version = 0
     this.stream = new ByteStream()
+    this.maintenceTimer = maintenceTimer
   }
   // << Error Code List >>
   // # 1  = Custom Message
@@ -32,8 +33,8 @@ class LoginFailedMessage extends PiranhaMessage {
     this.stream.writeString(config.updateLink) // updateurl
     this.stream.writeString(this.msg)
 
-    this.stream.writeInt(3600)
-    this.stream.writeBoolean(false)
+    this.stream.writeInt(this.maintenceTimer)
+    this.stream.writeBoolean(true)
 
     this.stream.writeString()
     this.stream.writeString()

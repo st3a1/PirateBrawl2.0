@@ -47,6 +47,22 @@ class LogicViewInboxNotificationCommand extends PiranhaMessage {
             new LogicDeliveryNotification(this.session, undefined, undefined, parseInt(findednotif.reward)).send()
             await database.replaceValue(this.session.lowID, 'Resources', account.Resources)
         }
+        if(findednotif.ID === 84){ // SP donated
+            // case 84
+            // 23 dataref
+        }
+        if(findednotif.ID === 90){ // resource donated
+            // case 90
+        }   // 50 dataref
+        if(findednotif.ID === 91){ // tickets donated
+            // case 91
+        }
+        if(findednotif.ID === 92){ // brawler power points donated
+            // case 92
+        }   // 16 dataref
+        if(findednotif.ID === 93){ // brawler donated
+            // case 93
+        }   // 16 dataref
         findednotif.claim = true;
         await database.replaceValue(this.session.lowID, 'Notification', account.Notification)
     }
