@@ -101,4 +101,4 @@ SpawnerDudeTurret,,true,,,,SpawnerPet,0,3500,,,,,,,,40,,,,Minion_Building,,Artil
 SpawnerPet,,true,,,,,900,1500,,1000,300,,,,BeeProjectile,13,,,,Minion_FindEnemies,,ShamanBearDefault,,,,,,,,death_bull_dude,Gen_move_fx,,,,nita_def_ulti_spawn,,bear_attack,,,,,,,,,,,,,,,30,,85,80,,,25,50,200,280,,,,500,-1250,145,Medium,-63,,100,,,,,,,,,,footstep,25,250,160,,,,,,,,,,,,,,,,,true,,
 ReloadBooster,,true,,,,,500,500,,,,,,,,12,,,,Minion_FollowOwner,,DamageBoosterDefault,,,,,ReloadBoostPersonal,,nuts_bolts_metal_small,nuts_bolts_metal_explosion,,,,,pam_def_ulti_spawn,,,,,,,,,,,,,,,,,,,75,75,,,25,180,220,300,,,,1400,-500,120,Medium,-49,,300,,,,,,,,,,footstep,25,400,160,,,,,,,,,,,,,,,,,,,
 CaptureFlag,,,,,,,0,200,,,,,,,,,,,,CaptureFlag,,CtfGift,,,,,,,,mode_gift_goal,,mode_gift_destoryed,,,,,,,,,,,,,,,,,,,,,,80,80,,,25,179,,,,,,,,120,Medium,-30,,,,,,,,,,,,,,,160,,,,,,,,,,,,,,,,,,,
-Bee,,,,,,,0,1,,,,,,,,,,,,Minion_FollowOwner,,BeeDefault,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,80,80,,,25,116,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bee,true,,,,,,0,1,,,,,,,,,,,,Minion_FollowOwner,,BeeDefault,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,80,80,,,25,116,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

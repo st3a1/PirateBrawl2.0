@@ -1,5 +1,6 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
+const ReleaseEntry = require('../../Entries/ReleaseEntry');
 
 const Shop = require('../../../PirateBrawl.Server/Utils/Shop');
 const Events = require('../../../PirateBrawl.Server/Utils/Events');
@@ -14,6 +15,11 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.account = account
     this.version = 0
     this.stream = new ByteStream()
+
+    this.releaseEntries = [
+      new ReleaseEntry(29, 259200),
+      new ReleaseEntry(33, 432000)
+  ];
   }
 
 
@@ -200,12 +206,12 @@ class OwnHomeDataMessage extends PiranhaMessage {
 
     this.stream.writeBoolean(true)  // Box boolean
 
-    this.stream.writeVInt(0)  // array
-    /*
-    this.stream.writeDataReference(16, 32)
-    this.stream.writeInt(123)
-    this.stream.writeInt(1)
-    */
+    this.stream.writeVInt(this.releaseEntries.length)  // array
+
+    for (const entry of this.releaseEntries) {
+      entry.encode(this.stream);
+    }
+
     Entrys.IntValueEntryLogicConfData(this.stream)
 
     //this.stream.writeVInt(1)
