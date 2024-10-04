@@ -1,5 +1,6 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
+const RewardEntry = require("../../Entries/RewardEntry");
 
 class SeasonRewardsMessage extends PiranhaMessage {
   constructor(session, type) {
@@ -9,232 +10,50 @@ class SeasonRewardsMessage extends PiranhaMessage {
     this.version = 0;
     this.stream = new ByteStream();
     this.type = type
+
+    this.rewardEntries = [
+      new RewardEntry(501, 524, 20, 500, false),
+      new RewardEntry(525, 549, 50, 524, false),
+      new RewardEntry(550, 574, 70, 549, false),
+      new RewardEntry(575, 599, 80, 574, false),
+      new RewardEntry(600, 624, 90, 599, false),
+      new RewardEntry(625, 649, 100, 624, false),
+      new RewardEntry(650, 674, 110, 649, false),
+      new RewardEntry(675, 699, 120, 674, false),
+      new RewardEntry(700, 724, 130, 699, false),
+      new RewardEntry(725, 749, 140, 724, false),
+      new RewardEntry(750, 774, 150, 749, false),
+      new RewardEntry(775, 779, 160, 774, false),
+      new RewardEntry(800, 824, 170, 799, false),
+      new RewardEntry(825, 849, 180, 824, false),
+      new RewardEntry(850, 874, 190, 849, false),
+      new RewardEntry(875, 899, 200, 874, false),
+      new RewardEntry(900, 924, 210, 885, false),
+      new RewardEntry(925, 949, 220, 920, false),
+      new RewardEntry(950, 974, 230, 940, false),
+      new RewardEntry(975, 999, 240, 960, false),
+      new RewardEntry(1000, 1049, 250, 999, false),
+      new RewardEntry(1050, 1099, 260, 980, false),
+      new RewardEntry(1100, 1149, 270, 1000, false),
+      new RewardEntry(1150, 1199, 280, 1020, false),
+      new RewardEntry(1200, 1249, 290, 1040, false),
+      new RewardEntry(1250, 1299, 300, 1060, false),
+      new RewardEntry(1300, 1349, 310, 1080, false),
+      new RewardEntry(1350, 1399, 320, 1100, false),
+      new RewardEntry(1400, 1449, 330, 1120, false),
+      new RewardEntry(1450, 1499, 340, 1140, false),
+      new RewardEntry(1500, -1, 350, 1150, true)
+    ]
   }
 
   async encode() {
     this.stream.writeVInt(this.type)
-    if(this.type === 1){
-        this.stream.writeVInt(31) // count
+    if(this.type === 1) {
+        this.stream.writeVInt(this.rewardEntries.length) // count
 
-        this.stream.writeVInt(501) // 1
-        this.stream.writeVInt(524)
-        this.stream.writeVInt(20)
-        this.stream.writeVInt(500)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(525) // 2
-        this.stream.writeVInt(549)
-        this.stream.writeVInt(50)
-        this.stream.writeVInt(524)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(550) // 3
-        this.stream.writeVInt(574)
-        this.stream.writeVInt(70)
-        this.stream.writeVInt(549)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(575) // 4 
-        this.stream.writeVInt(599)
-        this.stream.writeVInt(80)
-        this.stream.writeVInt(574)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-        
-        this.stream.writeVInt(600) // 5
-        this.stream.writeVInt(624)
-        this.stream.writeVInt(90)
-        this.stream.writeVInt(599)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(625) // 6
-        this.stream.writeVInt(649)
-        this.stream.writeVInt(100)
-        this.stream.writeVInt(624)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-        
-        this.stream.writeVInt(650) // 7 
-        this.stream.writeVInt(674)
-        this.stream.writeVInt(110)
-        this.stream.writeVInt(649)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(675) // 8
-        this.stream.writeVInt(699)
-        this.stream.writeVInt(120)
-        this.stream.writeVInt(674)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(700) // 9
-        this.stream.writeVInt(724)
-        this.stream.writeVInt(130)
-        this.stream.writeVInt(699)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(725) // 10
-        this.stream.writeVInt(749)
-        this.stream.writeVInt(140)
-        this.stream.writeVInt(724)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(750) // 11
-        this.stream.writeVInt(774)
-        this.stream.writeVInt(150)
-        this.stream.writeVInt(749)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(775) // 12
-        this.stream.writeVInt(779)
-        this.stream.writeVInt(160)
-        this.stream.writeVInt(774)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-        
-        this.stream.writeVInt(800) // 13
-        this.stream.writeVInt(824)
-        this.stream.writeVInt(170)
-        this.stream.writeVInt(799)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-      
-        this.stream.writeVInt(825) // 14
-        this.stream.writeVInt(849)
-        this.stream.writeVInt(180)
-        this.stream.writeVInt(824)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(850) // 15
-        this.stream.writeVInt(874)
-        this.stream.writeVInt(190)
-        this.stream.writeVInt(849)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(875) // 16
-        this.stream.writeVInt(899)
-        this.stream.writeVInt(200)
-        this.stream.writeVInt(874)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(900) // 17
-        this.stream.writeVInt(924)
-        this.stream.writeVInt(210)
-        this.stream.writeVInt(885)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(925) // 18
-        this.stream.writeVInt(949)
-        this.stream.writeVInt(220)
-        this.stream.writeVInt(920)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(950) // 19
-        this.stream.writeVInt(974)
-        this.stream.writeVInt(230)
-        this.stream.writeVInt(940)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(975) // 20 
-        this.stream.writeVInt(999)
-        this.stream.writeVInt(240)
-        this.stream.writeVInt(960)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1000) // 21
-        this.stream.writeVInt(1049)
-        this.stream.writeVInt(250)
-        this.stream.writeVInt(999)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1050)
-        this.stream.writeVInt(1099)
-        this.stream.writeVInt(260)
-        this.stream.writeVInt(980) // 22
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1100)
-        this.stream.writeVInt(1149)
-        this.stream.writeVInt(270)
-        this.stream.writeVInt(1000) // 23
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1150) // 24
-        this.stream.writeVInt(1199)
-        this.stream.writeVInt(280)
-        this.stream.writeVInt(1020)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1200)// 25
-        this.stream.writeVInt(1249)
-        this.stream.writeVInt(290)
-        this.stream.writeVInt(1040)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1250) // 26
-        this.stream.writeVInt(1299)
-        this.stream.writeVInt(300)
-        this.stream.writeVInt(1060)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1300) // 27
-        this.stream.writeVInt(1349)
-        this.stream.writeVInt(310)
-        this.stream.writeVInt(1080)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1350) // 28
-        this.stream.writeVInt(1399)
-        this.stream.writeVInt(320)
-        this.stream.writeVInt(1100)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1400) // 29
-        this.stream.writeVInt(1449)
-        this.stream.writeVInt(330)
-        this.stream.writeVInt(1120)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1450) // 30
-        this.stream.writeVInt(1499)
-        this.stream.writeVInt(340)
-        this.stream.writeVInt(1140)
-        this.stream.writeVInt(0)
-        this.stream.writeBoolean(false) // заканчивается в конце или нет
-
-        this.stream.writeVInt(1500) // 31
-        this.stream.writeVInt(-1)
-        this.stream.writeVInt(350)
-        this.stream.writeVInt(1150)
-        this.stream.writeVInt(1)
-        this.stream.writeBoolean(true) // заканчивается в конце или нет
-
-
-
+        for (const entry of this.rewardEntries) {
+          entry.encode(this.stream);
+        }
     }else if(this.type === 4) { // челендж какой то наверное по типу псж
     // потом, в 24 нету
     }else if(this.type === 6) { // special chempeonad

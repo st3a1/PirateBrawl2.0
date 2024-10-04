@@ -291,7 +291,7 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.stream.writeVInt(this.account.Brawlers.length)
     for (const brawler of this.account.Brawlers) {
       this.stream.writeDataReference(16, brawler.id)
-      this.stream.writeVInt(brawler.trophies)
+      this.stream.writeVInt(1488)
     }
 
     this.stream.writeVInt(0) // UnknownArray
