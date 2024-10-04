@@ -15,9 +15,14 @@ class ReportUser extends PiranhaMessage {
   this.reportedid1 = this.stream.readVInt()
   }
   async encode() {
-  this.stream.writeInt(0)
-  this.stream.writeVInt(0)
-  this.stream.writeVInt(this.session.lowID)
+  this.stream.writeInt(0) // timer? хз 
+  this.stream.writeVInt(0) // reported high audi
+  this.stream.writeVInt(this.session.lowID) // reported low audi
+  }
+  async process() {
+    console.log(this.reason)
+    console.log(this.reportedid0)
+    console.log(this.reportedid1)
   }
 }
 

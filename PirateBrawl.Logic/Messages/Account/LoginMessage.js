@@ -47,6 +47,16 @@ class LoginMessage extends PiranhaMessage {
   }
 
   async process () {
+
+    const maintenceEndDate = new Date(config.maintenceEndTime);
+    const now = new Date();
+    const z = maintenceEndDate - now;
+    const sectimer = Math.floor(z / 1000);
+
+    if(config.maintence){
+      await new LoginFailedMessage(this.session, ``, 10, sectimer).send()
+      return;
+    }
     if (!this.isHashValid(this.fingerprint_sha) || this.major !== config.major) {
       return await new LoginFailedMessage(this.session, `Отличные новости! Доступна новая версия ${config.serverName}Brawl\nGreat news! New version available ${config.serverName}Brawl`, 8).send();
     }
@@ -55,6 +65,8 @@ class LoginMessage extends PiranhaMessage {
       this.session.token = crypto.randomBytes(Math.ceil(36/2)).toString('hex').slice(0, 36);
       await database.createAccount(this.session.token);
     }
+
+
 
 
     const account = await database.getAccountToken(this.session.token);
@@ -89,7 +101,7 @@ class LoginMessage extends PiranhaMessage {
         });
         await database.replaceValue(this.session.lowID, 'Brawlers', account.Brawlers);
     }
-	
+    
     await new LoginOKMessage(this.session).send();
     await new OwnHomeDataMessage(this.session, account).send();
 
