@@ -29,7 +29,7 @@ class OwnHomeDataMessage extends PiranhaMessage {
     ]
     
     this.offers = [
-      new LogicOfferBundle(this.gemOffers, 0, 0, 52000, false, false,new ChronosTextEntry("Мiнiтi", false), false, "offer_xmas")
+      new LogicOfferBundle(this.gemOffers, 0, 0, 52000, 2, 0,false, false,new ChronosTextEntry("Мiнiтi", false), false, "offer_xmas")
     ]
   }
 
@@ -93,13 +93,10 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.stream.writeVInt(0) // Timer for next name change
 
     // Shop Offers array
-    //new Shop().encode(this.stream, this.account)
+    new Shop().encode(this.stream, this.account)
     //TEST! TODO: REWRITE IT
 
-    this.stream.writeVInt(this.offers.length); // Shop Offers array length
-    for (const offer of this.offers) {
-      offer.encode(this.stream);
-    }
+
 
     this.stream.writeVInt(0)  // array
 

@@ -68,9 +68,13 @@ class LoginMessage extends PiranhaMessage {
 
 
 
-
     const account = await database.getAccountToken(this.session.token);
     if(account == null) return await new LoginFailedMessage(this.session, `Ваш аккаунт не найден, нужно удалить данные об игре!`, 18).send();
+    
+    if (account.Shop.length === 0 || account.Shop[0].EndDate === undefined || Math.floor((new Date(account.Shop[0].EndDate) - new Date()) / 1000) <= 0) {
+      account.Shop = new Shop().generateShop(account);
+      await database.replaceValue(account.lowID, 'Shop', account.Shop);
+    }
 
     if(account.Banned){
       await new LoginFailedMessage(this.session, ``, 13).send()
