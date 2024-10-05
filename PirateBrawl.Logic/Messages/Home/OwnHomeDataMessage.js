@@ -1,6 +1,9 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const ReleaseEntry = require('../../Entries/ReleaseEntry');
+const LogicGemOffer = require('../../Offers/LogicGemOffer');
+const LogicOfferBundle = require('../../Offers/LogicOfferBundle');
+const ChronosTextEntry = require('../../Entries/ChronosTextEntry');
 
 const Shop = require('../../../PirateBrawl.Server/Utils/Shop');
 const Events = require('../../../PirateBrawl.Server/Utils/Events');
@@ -19,7 +22,15 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.releaseEntries = [
       new ReleaseEntry(29, 259200),
       new ReleaseEntry(33, 432000)
-  ];
+    ];
+
+    this.gemOffers = [
+      new LogicGemOffer(1, 500)
+    ]
+    
+    this.offers = [
+      new LogicOfferBundle(this.gemOffers, 0, 0, 52000, false, false,new ChronosTextEntry("Мiнiтi", false), false, "offer_xmas")
+    ]
   }
 
 
@@ -82,8 +93,13 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.stream.writeVInt(0) // Timer for next name change
 
     // Shop Offers array
-    new Shop().encode(this.stream, this.account)
-    // offer end
+    //new Shop().encode(this.stream, this.account)
+    //TEST! TODO: REWRITE IT
+
+    this.stream.writeVInt(this.offers.length); // Shop Offers array length
+    for (const offer of this.offers) {
+      offer.encode(this.stream);
+    }
 
     this.stream.writeVInt(0)  // array
 
