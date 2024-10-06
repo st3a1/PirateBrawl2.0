@@ -109,7 +109,6 @@ class LoginMessage extends PiranhaMessage {
     
     await new LoginOKMessage(this.session).send();
     await new OwnHomeDataMessage(this.session, account).send();
-
     await new FriendListMessage(this.session).send();
 
     if (account.ClubID !== 0) {
@@ -123,6 +122,7 @@ class LoginMessage extends PiranhaMessage {
       await new AllianceStreamMessage(this.session, gettingClub.msg).send()
     }
     console.log(this.session.Country)
+
   }
 }
 

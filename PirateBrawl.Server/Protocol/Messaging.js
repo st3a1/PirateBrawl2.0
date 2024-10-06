@@ -18,6 +18,7 @@ class Messaging {
         const session = sessionId ? Array.from(global.sessions.values()).find(session => session.lowID === sessionId) : this.session;
         if (!session) return;
         const header = this.generateHeader(this.id, this.stream.buffer.length, this.version);
+        
         const dataWithSession = Buffer.concat([header, this.stream.buffer, Buffer.from([0xFF, 0xFF, 0x0, 0x0, 0x0, 0x0, 0x0])]);
         session.write(dataWithSession);
         if(this.id !== 24109){

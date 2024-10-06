@@ -4,7 +4,8 @@ class FriendEntry {
     }
 
     encode(stream) {
-        stream.writeLong(0, 1); //acc id
+        stream.writeInt(0); //acc id
+        stream.writeInt(2); //acc id
 
         stream.writeString(null);
         stream.writeString(null);
@@ -22,12 +23,12 @@ class FriendEntry {
         stream.writeBoolean(false); // Alliance?
         stream.writeString(null);
 
-        stream.writeInt(0); // last online time
+        stream.writeInt(1488); // last online time
 
         stream.writeBoolean(true);
 
         //PlayerDisplayData::encode
-        stream.writeString("TEST ENTITY");
+        stream.writeString("TEST ENTITY #1");
         stream.writeVInt(100);
         stream.writeVInt(28000000);
         stream.writeVInt(43000000);
