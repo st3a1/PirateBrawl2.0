@@ -8,7 +8,7 @@ const clubListCache = new Map();
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'Demon228For!',
+  password: 'wisedev',
   database: 'idk'
 });
 
