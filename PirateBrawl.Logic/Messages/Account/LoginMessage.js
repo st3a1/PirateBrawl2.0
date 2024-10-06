@@ -11,6 +11,7 @@ const config = require("../../../config.json")
 const Shop = require("../../../PirateBrawl.Server/Utils/Shop")
 const MyAllianceMessage = require('../Alliance/MyAllianceMessage')
 const AllianceStreamMessage = require('../Alliance/AllianceStreamMessage')
+const FriendListMessage = require('../Home/FriendListMessage');
 
 class LoginMessage extends PiranhaMessage {
   constructor (bytes, session) {
@@ -108,6 +109,8 @@ class LoginMessage extends PiranhaMessage {
     
     await new LoginOKMessage(this.session).send();
     await new OwnHomeDataMessage(this.session, account).send();
+
+    await new FriendListMessage(this.session).send();
 
     if (account.ClubID !== 0) {
       let gettingClub = await database.getClub(account.ClubID);
