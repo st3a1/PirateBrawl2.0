@@ -160,6 +160,26 @@
             border-radius: 4px;
         }
 
+        .loading {
+            display: none;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #000;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         @keyframes FadeInUp {
             from {
                 opacity: 0;
@@ -205,6 +225,7 @@
         </div>
         <button id="confirm-code-button" style="display:none;">Подтвердить код</button>
         <p id="description-text"></p>
+        <div id="loading-indicator" class="loading"></div>
     </div>
 
     <button class="language-switch" id="language-switch" onclick="ToggleLanguageList()">
@@ -242,10 +263,11 @@
         const CodeContainer = document.getElementById("code-container");
         const RegistrationForm = document.getElementById("registration-form");
         const ConfirmCodeButton = document.getElementById("confirm-code-button");
+        const LoadingIndicator = document.getElementById("loading-indicator");
 
         const Phrases = [
-            "Мы лучшие",
-            "Ага",
+            "пр мир",
+            "а4цекйцуещзйцоуещзо1230г12ш3ктцоуйтолйцуипалфдыотплдфжыуретщшфцт4ще шфм црущзке оыкволдеылдвке рфшщыуфеджыледофк мещшфуркемгщурке мдфукоелрдфол",
             "Микс Бравл рулит"
         ];
         let CurrentPhraseIndex = 0;
@@ -267,15 +289,14 @@
 
         function DeleteEffect(phrase) {
             let i = phrase.length;
-
             const DeleteInterval = setInterval(() => {
                 if (i > 0) {
-                    DescriptionElement.textContent = phrase.slice(0, i - 1);
+                    DescriptionElement.textContent = phrase.substring(0, i - 1);
                     i--;
                 } else {
                     clearInterval(DeleteInterval);
                     CurrentPhraseIndex = (CurrentPhraseIndex + 1) % Phrases.length;
-                    setTimeout(() => TypeEffect(Phrases[CurrentPhraseIndex]), 500);
+                    TypeEffect(Phrases[CurrentPhraseIndex]);
                 }
             }, 50);
         }
@@ -304,15 +325,20 @@
 
         document.getElementById("registration-form").addEventListener("submit", function (event) {
             event.preventDefault();
+
+            // Показать индикатор загрузки
+            LoadingIndicator.style.display = 'block';
+            const RandomDelay = Math.floor(Math.random() * 6000) + 1000;
+
             RegistrationForm.style.animation = "fadeOut 0.5s forwards";
 
             setTimeout(() => {
+                LoadingIndicator.style.display = 'none';
                 ConfirmationMessageElement.textContent = "Отправили код подтверждения!\nПроверьте ваш почтовый ящик и раздел спам";
                 ConfirmationMessageElement.style.opacity = 1;
-                RegistrationForm.style.display = 'none';
                 CodeContainer.style.display = 'flex';
                 ConfirmCodeButton.style.display = 'block';
-            }, 500);
+            }, RandomDelay);
 
             setTimeout(() => {
                 DescriptionElement.textContent = "ОК";

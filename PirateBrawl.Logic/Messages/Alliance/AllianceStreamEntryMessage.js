@@ -2,11 +2,12 @@ const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessag
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 
 class AllianceStreamEntryMessage extends PiranhaMessage {
-  constructor(c, d) {
+  constructor(c, d, chatbot) {
     super(c);
     this.id = 24312;
     this.session = c;
     this.version = 0x1;
+    this.chatbot = chatbot
     this.chat = d;
     this.stream = new ByteStream();
   }

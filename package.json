@@ -17,6 +17,7 @@
     "glov": "^0.0.1",
     "mysql2": "^3.9.7",
     "qs": "^6.12.1",
+    "systeminformation": "^5.23.5",
     "telegraf": "^4.16.3",
     "telegraf-session-local": "^2.1.1"
   }

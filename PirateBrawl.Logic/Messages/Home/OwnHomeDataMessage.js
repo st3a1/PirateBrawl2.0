@@ -95,6 +95,41 @@ class OwnHomeDataMessage extends PiranhaMessage {
     // Shop Offers array
     new Shop().encode(this.stream, this.account)
     //TEST! TODO: REWRITE IT
+    
+    /*
+    this.stream.writeVInt(1)
+    this.stream.writeVInt(2)
+        this.stream.writeVInt(4)
+        this.stream.writeVInt(1)
+        this.stream.writeDataReference(29, 134)
+        this.stream.writeVInt(134)
+
+        this.stream.writeVInt(3)
+        this.stream.writeVInt(1)
+        this.stream.writeDataReference(16, 25)
+        this.stream.writeVInt(0)
+
+    this.stream.writeVInt(0)
+
+    
+    this.stream.writeVInt(17)
+    this.stream.writeVInt(1333338)//Timer ?? 
+
+    this.stream.writeVInt(1)//Offer View | 0 = Absolutely "NEW", 1 = "NEW", 2 = Viewed
+    this.stream.writeVInt(100)
+    this.stream.writeBoolean(false)// purchased
+
+    this.stream.writeBoolean(false)
+    this.stream.writeVInt(0)// [0 = Normal, 1 = Daily Deals]
+    this.stream.writeVInt(1488)//OldPrice
+
+    this.stream.writeInt(1) // if str is csv - 1 else 0
+    this.stream.writeString("TID_AVATAR_MESSAGE_TEXT_GEM_REVOKE")
+
+    this.stream.writeBoolean(false)
+    this.stream.writeString("offer_xmas")
+    */
+    
 
 
 
