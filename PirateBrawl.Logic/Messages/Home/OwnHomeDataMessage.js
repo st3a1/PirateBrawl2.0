@@ -8,6 +8,8 @@ const ChronosTextEntry = require('../../Entries/ChronosTextEntry');
 const Shop = require('../../../PirateBrawl.Server/Utils/Shop');
 const Events = require('../../../PirateBrawl.Server/Utils/Events');
 const Entry = require('../../../PirateBrawl.Titan/Entry/Entry');
+const FreeTextNotification = require('../../Notifications/FreeTextNotification.js');
+const GemRewardNotification = require('../../Notifications/GemRewardNotification.js');
 
 
 class OwnHomeDataMessage extends PiranhaMessage {
@@ -268,27 +270,39 @@ class OwnHomeDataMessage extends PiranhaMessage {
     const notificationCount = this.account.Notification.length;
     const notifications = this.account.Notification.reverse();
 
-    this.stream.writeVInt(notificationCount);
+    // this.stream.writeVInt(notificationCount);
 
 
-    for (const notdata of notifications) {
-      this.stream.writeVInt(notdata.ID); // NotificationID
-      this.stream.writeInt(notdata.index); // NotificationIndex
-      this.stream.writeBoolean(notdata.claim); // isSeen
-      const sendeDate = new Date(notdata.date);
-      this.stream.writeInt(Math.floor((currentDate - sendeDate) / 1000)); // Time ago was received
-      this.stream.writeString(notdata.text); // Message
-      if(notdata.ID === 94 || notdata.ID === 89 || notdata.ID === 81) this.stream.writeVInt(notdata.type > 1 ? 29000000+notdata.reward : notdata.type); // NotificationID
-      if(notdata.ID === 89) this.stream.writeVInt(notdata.reward);
-      if(notdata.ID === 93) this.stream.writeVInt(notdata.reward);
-      if(notdata.ID === 79) {
-        this.stream.writeVInt(notdata.brawlers.length);
-        notdata.brawlers.forEach(e => {
-          this.stream.writeVInt(16000000 + e.id)
-          this.stream.writeVInt(Math.round(e.t/0.90))//HeroesTrophies
-          this.stream.writeVInt(Math.round(e.t/0.90)-e.t)//HeroesTrophiesReseted
-          this.stream.writeVInt(Math.round(e.t/0.90)-e.t)//StarpointsAwarded
-        });
+    // for (const notdata of notifications) {
+    //   this.stream.writeVInt(notdata.ID); // NotificationID
+    //   this.stream.writeInt(notdata.index); // NotificationIndex
+    //   this.stream.writeBoolean(notdata.claim); // isSeen
+    //   const sendeDate = new Date(notdata.date);
+    //   this.stream.writeInt(Math.floor((currentDate - sendeDate) / 1000)); // Time ago was received
+    //   this.stream.writeString(notdata.text); // Message
+    //   if(notdata.ID === 94 || notdata.ID === 89 || notdata.ID === 81) this.stream.writeVInt(notdata.type > 1 ? 29000000+notdata.reward : notdata.type); // NotificationID
+    //   if(notdata.ID === 89) this.stream.writeVInt(notdata.reward);
+    //   if(notdata.ID === 93) this.stream.writeVInt(notdata.reward);
+    //   if(notdata.ID === 79) {
+    //     this.stream.writeVInt(notdata.brawlers.length);
+    //     notdata.brawlers.forEach(e => {
+    //       this.stream.writeVInt(16000000 + e.id)
+    //       this.stream.writeVInt(Math.round(e.t/0.90))//HeroesTrophies
+    //       this.stream.writeVInt(Math.round(e.t/0.90)-e.t)//HeroesTrophiesReseted
+    //       this.stream.writeVInt(Math.round(e.t/0.90)-e.t)//StarpointsAwarded
+    //     });
+    //   }
+    // }
+
+    let notifs = [
+      new GemRewardNotification(false, `Привет! Добро пожаловать в MIX Brawl!\nТвои первые гемы:`, 40)
+    ]
+
+    this.stream.writeVInt(notifs.length);
+    {
+      for (const n of notifs) {
+        this.stream.writeVInt(n.getNotificationType());
+        n.encode(this.stream);
       }
     }
 
