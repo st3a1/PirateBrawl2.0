@@ -1,6 +1,7 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 const database = require("../../../PirateBrawl.Server/Database/DatabaseManager")
+const Character = require("../../../GameFiles/Characters")
 
 class LogicShopCommand extends PiranhaMessage {
     constructor(session, account, items) {
@@ -24,7 +25,6 @@ class LogicShopCommand extends PiranhaMessage {
         for (const item of this.items) {
             this.stream.writeVInt(item.multiplier);
             if (item.id === 1){
-                item.view = 2
                 this.stream.writeVInt(0);
                 this.stream.writeVInt(7);//coins
 
@@ -32,7 +32,6 @@ class LogicShopCommand extends PiranhaMessage {
                 this.stream.writeVInt(0);
                 this.session.Resources.Gold = this.session.Resources.Gold+item.multiplier
             }else if (item.id === 9){
-                item.view = 2
                 this.stream.writeVInt(0);
                 this.stream.writeVInt(2);//TokensDoubler
 
@@ -41,7 +40,6 @@ class LogicShopCommand extends PiranhaMessage {
                 this.session.Resources.TokensDoubler = this.session.Resources.TokensDoubler+item.multiplier
 
             }else if (item.id === 3){
-                item.view = 2
                 this.stream.writeVInt(16);
                 this.stream.writeVInt(item.dataRef[1]);
 
@@ -52,7 +50,6 @@ class LogicShopCommand extends PiranhaMessage {
                 targetBrawler.unlocked = true
 
             }else if (item.id === 4){
-                item.view = 2
                 this.stream.writeVInt(0);
                 this.stream.writeVInt(9);//skins
 
@@ -61,7 +58,6 @@ class LogicShopCommand extends PiranhaMessage {
 
                 this.account.Skins.push(item.skinID)
             }else if (item.id === 8){
-                item.view = 2
                 this.stream.writeVInt(16);//brawler
 
                 this.stream.writeVInt(item.dataRef[1]);
@@ -71,46 +67,60 @@ class LogicShopCommand extends PiranhaMessage {
                 const targetBrawler = this.account.Brawlers.find(brawler => brawler.id === item.dataRef[1]);
                 targetBrawler.points = targetBrawler.points + item.multiplier
             }else if (item.id === 5){
-                item.view = 2
                 this.stream.writeVInt(0);
                 this.stream.writeVInt(4);
                 this.stream.writeVInt(0);
                 this.stream.writeDataReference(23, item.dataRef[1]);
                 this.stream.writeVInt(0);
                 this.account.Skills.push(item.dataRef[1])
-            }else if (item.id === 2){ // rand brawler
-            item.view = 2
-        
-            var rare = [6, 10, 13, 24];
-            var superrare = [4, 18, 19, 25];
-            var epic = [15, 16, 20, 26];
-            var mythic = [10, 17, 21];
+            } else if (item.id === 2) {
 
-            var rarityArrays = {
-             1: rare,
-             2: superrare,
-             3: epic,
-             4: mythic
-              };
+            
+                const rare = [6, 10, 13, 24];
+                const superrare = [4, 18, 19, 25];
+                const epic = [15, 16, 20, 26];
+                const mythic = [10, 17, 21];
+            
+                function getOtherId(array) {
+                    if (array.length > 0) {
+                        return array[Math.floor(Math.random() * array.length)];
+                    } else {
+                        return 0;
+                    }
+                }
+            
+                let newId = 0;
+            
+                if (item.skinID === 1) {
+                    newId = getOtherId(rare);
+                } else if (item.skinID === 2) {
+                    newId = getOtherId(superrare);
+                } else if (item.skinID === 3) {
+                    newId = getOtherId(epic);
+                } else if (item.skinID === 4) {
+                    newId = getOtherId(mythic);
+                } else {
+                    newId = 0;
+                }
 
-            var brawler;
-            do {
-            var ridArray = rarityArrays[item.skinID];
-            var rid = ridArray[Math.floor(Math.random() * ridArray.length)];
-            var brawler = this.account.Brawlers.find(brawler => brawler.id === this.rid); // searching
-            } while (brawler && brawler.unlocked);
-             this.rid = rid;
- 
+                this.rid = newId;
+            
+                var brawler = this.account.Brawlers.find(brawler => brawler.id === this.rid);
+            
+            
                 this.stream.writeVInt(16);
+                if (this.rid === undefined) this.rid = 0;
                 this.stream.writeVInt(this.rid);
-
+            
                 this.stream.writeVInt(1);
                 this.stream.writeVInt(0);
-
+            
                 const targetBrawler1 = this.account.Brawlers.find(brawler => brawler.id === this.rid);
-                targetBrawler1.unlocked = true
-            }else if (item.id === 16){
-                item.view = 2
+                if (targetBrawler1) {
+                    targetBrawler1.unlocked = true;
+                }
+            }
+            else if (item.id === 16){
                 this.stream.writeVInt(0);
                 this.stream.writeVInt(8);//gems8
 
@@ -118,7 +128,6 @@ class LogicShopCommand extends PiranhaMessage {
                 this.stream.writeVInt(0);
                 this.session.Resources.Gems = this.session.Resources.Gems+item.multiplier
             }else if (item.id === 7){
-                item.view = 2
                 this.stream.writeVInt(0);
                 this.stream.writeVInt(3); 
 

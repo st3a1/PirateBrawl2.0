@@ -17,7 +17,7 @@ class AnalyticEventMessage extends PiranhaMessage {
   }
 
   async process () {
-  console.log("[INFO] " + "NEW EVENT " + "Type: " + this.Type + "\n" + " Event: " + this.Event)
+  //console.log("[INFO] " + "NEW EVENT " + "Type: " + this.Type + "\n" + " Event: " + this.Event)
   }
 }
 

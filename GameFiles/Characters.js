@@ -9,6 +9,10 @@ function getDefSkinById(id){
     return data[id].DefaultSkin
 }
 
+function isBrawlerLocked(id) {
+    return data[id].LockedForChronos
+}
+
 function getNameById(id){
     return data[id].Name
 }
@@ -118,5 +122,6 @@ module.exports = {
     getmoveSpeedById,
     getRechargeTimeById,
     getMaxChargeById,
-    getBrawlerData
+    getBrawlerData,
+    isBrawlerLocked
 }

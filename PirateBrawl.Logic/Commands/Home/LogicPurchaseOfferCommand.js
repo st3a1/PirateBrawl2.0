@@ -61,7 +61,7 @@ class LogicPurchaseOfferCommand extends PiranhaMessage {
             }else{
                 new LogicShopCommand(this.session,account,includesArray).send()
             }
-            foundOffer.claim = true
+            foundOffer.claim = false
 
             await database.replaceValue(account.lowID, 'Shop', account.Shop);
 
