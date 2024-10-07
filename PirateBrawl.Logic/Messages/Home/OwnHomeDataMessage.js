@@ -17,7 +17,6 @@ class OwnHomeDataMessage extends PiranhaMessage {
     this.session = session
     this.account = account
     this.version = 0
-    this.stream = new ByteStream()
 
     this.releaseEntries = [
       new ReleaseEntry(29, 259200),
@@ -256,9 +255,8 @@ class OwnHomeDataMessage extends PiranhaMessage {
 
     this.stream.writeVInt(this.releaseEntries.length)  // array
 
-    for (const entry of this.releaseEntries) {
+    for (const entry of this.releaseEntries)
       entry.encode(this.stream);
-    }
 
     Entrys.IntValueEntryLogicConfData(this.stream)
 
