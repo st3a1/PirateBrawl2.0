@@ -33,6 +33,14 @@ class LoginFailedMessage extends PiranhaMessage {
     this.stream.writeString(config.updateLink) // updateurl
     this.stream.writeString(this.msg)
 
+    const currentDate = new Date();
+    const targetDate = this.maintenceTimer
+    const timeDifference = targetDate - currentDate;
+    const timeInSeconds = Math.floor(timeDifference / 1000);
+
+    console.log(this.maintenceTimer)
+    console.log(timeInSeconds)
+
     this.stream.writeInt(this.maintenceTimer)
     this.stream.writeBoolean(true)
 

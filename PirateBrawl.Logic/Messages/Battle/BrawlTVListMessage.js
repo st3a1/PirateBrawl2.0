@@ -1,20 +1,18 @@
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
-const LoginFailedMessage = require('../Account/LoginFailedMessage')
-const StartLoadingMessage = require('./StartLoadingMessage')
-const BrawlTVListMessage = require("./BrawlTVListMessage")
-
 class ListBrawlTvChannelsMessage extends PiranhaMessage {
   constructor (bytes, session) {
     super(session)
     this.session = session
-    this.id = 14700
+    this.id = 24700
     this.version = 0
     this.stream = new ByteStream(bytes)
   }
   
-  async process() {
-    await new BrawlTVListMessage(this.session).send()
+  async encode() {
+    this.stream.writeVInt(1) // count
+        this.stream.writeVInt(1)
+        this.stream.writeVInt(1)
   }
 }
 

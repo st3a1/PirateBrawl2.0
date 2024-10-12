@@ -27,13 +27,15 @@ class AskForBattleEndMessage extends PiranhaMessage {
     this.mapID = this.stream.readDataReference()[1];
     this.playersAmount = this.stream.readVInt();
     this.fields = [];
-    this.stream.readVInt(); // Brawler CsvID
+    this.idk = this.stream.readVInt(); // Brawler CsvID
+    console.log(this.idk)
     this.stream.readVInt(); // Selected Brawler
     this.stream.readVInt(); // Skin CsvID
     this.stream.readVInt(); // Selected Skin
     this.stream.readVInt(); // red or blue
-    this.stream.readVInt();
-    this.EndName = this.stream.readString()// your name
+    this.penis = this.stream.readVInt();
+    console.log(this.penis)
+    this.EndName = this.stream.readString()// your name8888888888888888888888888888888888888888888
 
     for (let j = 1; j < this.playersAmount; j++) {
       this.filds = {}

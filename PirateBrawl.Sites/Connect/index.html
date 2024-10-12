@@ -18,6 +18,7 @@
             height: 100vh;
             margin: 0;
             position: relative;
+            flex-direction: column;
         }
 
         .container {
@@ -38,14 +39,15 @@
             font-size: 36px;
         }
 
-        input[type="email"],
-        input[type="text"],
+        input[type="email"], input[type="text"], input[type="number"],
         button {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
             border-radius: 4px;
             border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
         }
 
         button {
@@ -55,6 +57,7 @@
             cursor: pointer;
             font-size: 16px;
             transition: transform 0.2s;
+            padding: 10px;
         }
 
         button:hover {
@@ -65,99 +68,15 @@
         p {
             margin-top: 20px;
             font-size: 14px;
-            color: #777;
             min-height: 20px;
         }
 
-        .language-switch {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background-color: #ccc;
-            color: #000;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 100px;
-            transition: background-color 0.2s, transform 0.2s;
-        }
-
-        .language-switch:hover {
-            background-color: #bbb;
-            transform: scale(1.1);
-        }
-
-        .language-list {
-            display: none;
-            position: absolute;
-            bottom: 50px;
-            right: 10px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100px;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-
-        .language-list.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .language-list li {
-            padding: 8px 10px;
-            cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: #000;
-        }
-
-        .language-list li:hover {
-            background-color: #f4f4f4;
-        }
-
-        .flag-icon {
-            font-size: 16px;
-        }
-
-        .confirmation-message {
+        .success-message {
             color: green;
-            opacity: 0;
-            transition: opacity 0.5s;
-            margin-top: 20px;
-            font-size: 14px;
-            white-space: pre-line;
         }
 
-        .code-container {
-            display: none;
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .code-input {
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            font-size: 24px;
-            margin: 0 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .error-message {
+            color: red;
         }
 
         .loading {
@@ -169,6 +88,53 @@
             width: 40px;
             height: 40px;
             animation: spin 1s linear infinite;
+        }
+
+        /* Обновленный профиль */
+        .profile {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            animation: FadeInUp 0.5s forwards;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .profile-img img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .divider {
+            border-left: 1px solid #ccc;
+            height: 100px;
+            margin-right: 20px;
+        }
+
+        .profile h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .profile p {
+            font-size: 18px;
         }
 
         @keyframes spin {
@@ -192,7 +158,7 @@
             }
         }
 
-        @keyframes FadeOut {
+        @keyframes FadeOutDown {
             from {
                 opacity: 1;
                 transform: translateY(0);
@@ -200,8 +166,12 @@
 
             to {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(20px);
             }
+        }
+
+        .fade-out {
+            animation: FadeOutDown 0.5s forwards;
         }
     </style>
 </head>
@@ -211,143 +181,139 @@
     <div class="container">
         <h1 id="header-text">Mix Connect</h1>
         <form id="registration-form" action="/register" method="POST">
-            <input type="email" id="email-placeholder" name="email" placeholder="Email" required>
-            <button type="submit" id="register-button">Регистрация</button>
+            <input type="text" id="tag" name="tag" placeholder="Введи свой #ТЕГ аккаунта" required>
+            <input type="email" id="email" name="email" placeholder="Введи свою почту" required>
+            <button type="submit">Регистрация</button>
         </form>
+
+        <form id="confirmation-form" style="display: none;">
+            <input type="number" id="confirmation-code" placeholder="Введите код подтверждения" required>
+            <button type="submit">Подтвердить</button>
+        </form>
+
         <p id="confirmation-message" class="confirmation-message"></p>
-        <div id="code-container" class="code-container">
-            <input type="text" class="code-input" maxlength="1" oninput="MoveToNext(this)">
-            <input type="text" class="code-input" maxlength="1" oninput="MoveToNext(this)">
-            <input type="text" class="code-input" maxlength="1" oninput="MoveToNext(this)">
-            <input type="text" class="code-input" maxlength="1" oninput="MoveToNext(this)">
-            <input type="text" class="code-input" maxlength="1" oninput="MoveToNext(this)">
-            <input type="text" class="code-input" maxlength="1" oninput="MoveToNext(this)">
-        </div>
-        <button id="confirm-code-button" style="display:none;">Подтвердить код</button>
-        <p id="description-text"></p>
         <div id="loading-indicator" class="loading"></div>
+
+        <div id="profile" class="profile">
+            <!-- Левая часть с иконкой профиля -->
+            <div class="profile-img">
+                <img src="https://via.placeholder.com/80" alt="Profile Icon"> <!-- Иконка временная -->
+                <h3 id="player-name"></h3> <!-- Имя под иконкой -->
+            </div>
+
+            <!-- Вертикальная черта -->
+            <div class="divider"></div>
+
+            <!-- Правая часть с информацией -->
+            <div class="profile-info">
+                <p id="player-trophies"></p>
+                <p id="player-gems"></p>
+                <p id="player-email"></p>
+            </div>
+        </div>
     </div>
 
-    <button class="language-switch" id="language-switch" onclick="ToggleLanguageList()">
-        <span id="current-flag">🇷🇺</span> <span id="current-lang">Русский</span>
-    </button>
-
-    <ul id="language-list" class="language-list">
-        <li onclick="SetLanguage('ru')">
-            <span class="flag-icon">🇷🇺</span> Русский
-        </li>
-        <li onclick="SetLanguage('en')">
-            <span class="flag-icon">🇬🇧</span> English
-        </li>
-    </ul>
-
     <script>
-        const Translations = {
-            ru: {
-                emailPlaceholder: "Электронная почта",
-                registerButton: "Регистрация",
-                flag: "🇷🇺",
-                lang: "Русский"
-            },
-            en: {
-                emailPlaceholder: "Email",
-                registerButton: "Register",
-                flag: "🇬🇧",
-                lang: "English"
-            }
-        };
-
-        let CurrentLanguage = 'ru';
-        const DescriptionElement = document.getElementById("description-text");
-        const ConfirmationMessageElement = document.getElementById("confirmation-message");
-        const CodeContainer = document.getElementById("code-container");
-        const RegistrationForm = document.getElementById("registration-form");
-        const ConfirmCodeButton = document.getElementById("confirm-code-button");
-        const LoadingIndicator = document.getElementById("loading-indicator");
-
-        const Phrases = [
-            "пр мир",
-            "а4цекйцуещзйцоуещзо1230г12ш3ктцоуйтолйцуипалфдыотплдфжыуретщшфцт4ще шфм црущзке оыкволдеылдвке рфшщыуфеджыледофк мещшфуркемгщурке мдфукоелрдфол",
-            "Микс Бравл рулит"
-        ];
-        let CurrentPhraseIndex = 0;
-
-        function TypeEffect(phrase) {
-            let i = 0;
-            DescriptionElement.textContent = "";
-
-            const TypeInterval = setInterval(() => {
-                if (i < phrase.length) {
-                    DescriptionElement.textContent += phrase.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(TypeInterval);
-                    setTimeout(() => DeleteEffect(phrase), 2000);
-                }
-            }, 100);
-        }
-
-        function DeleteEffect(phrase) {
-            let i = phrase.length;
-            const DeleteInterval = setInterval(() => {
-                if (i > 0) {
-                    DescriptionElement.textContent = phrase.substring(0, i - 1);
-                    i--;
-                } else {
-                    clearInterval(DeleteInterval);
-                    CurrentPhraseIndex = (CurrentPhraseIndex + 1) % Phrases.length;
-                    TypeEffect(Phrases[CurrentPhraseIndex]);
-                }
-            }, 50);
-        }
-
-        TypeEffect(Phrases[CurrentPhraseIndex]);
-
-        function ToggleLanguageList() {
-            const LanguageList = document.getElementById("language-list");
-            LanguageList.classList.toggle("active");
-        }
-
-        function SetLanguage(lang) {
-            CurrentLanguage = lang;
-            document.getElementById("email-placeholder").placeholder = Translations[lang].emailPlaceholder;
-            document.getElementById("register-button").textContent = Translations[lang].registerButton;
-            document.getElementById("current-flag").textContent = Translations[lang].flag;
-            document.getElementById("current-lang").textContent = Translations[lang].lang;
-            ToggleLanguageList();
-        }
-
-        function MoveToNext(input) {
-            if (input.nextElementSibling) {
-                input.nextElementSibling.focus();
-            }
-        }
-
-        document.getElementById("registration-form").addEventListener("submit", function (event) {
+        document.getElementById("registration-form").addEventListener("submit", async function (event) {
             event.preventDefault();
 
-            // Показать индикатор загрузки
-            LoadingIndicator.style.display = 'block';
-            const RandomDelay = Math.floor(Math.random() * 6000) + 1000;
+            const tag = document.getElementById("tag").value;
+            const email = document.getElementById("email").value;
+            const loadingIndicator = document.getElementById("loading-indicator");
+            const confirmationMessage = document.getElementById("confirmation-message");
 
-            RegistrationForm.style.animation = "fadeOut 0.5s forwards";
+            // Очистка предыдущих сообщений
+            confirmationMessage.textContent = '';
+            confirmationMessage.classList.remove('error-message', 'success-message');
 
-            setTimeout(() => {
-                LoadingIndicator.style.display = 'none';
-                ConfirmationMessageElement.textContent = "Отправили код подтверждения!\nПроверьте ваш почтовый ящик и раздел спам";
-                ConfirmationMessageElement.style.opacity = 1;
-                CodeContainer.style.display = 'flex';
-                ConfirmCodeButton.style.display = 'block';
-            }, RandomDelay);
+            // Показываем индикатор загрузки
+            loadingIndicator.style.display = 'block';
 
-            setTimeout(() => {
-                DescriptionElement.textContent = "ОК";
-                setTimeout(() => {
-                    DescriptionElement.style.opacity = 0;
-                }, 1000);
-            }, 2000);
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ tag, email })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    confirmationMessage.textContent = 'Код подтверждения отправлен на вашу почту!';
+                    confirmationMessage.classList.add('success-message');
+                    document.getElementById("confirmation-form").style.display = 'block'; // Показываем форму для кода
+                    document.getElementById("registration-form").style.display = 'none'; // Скрываем регистрацию
+                } else {
+                    confirmationMessage.textContent = 'Ошибка: ' + result.message;
+                    confirmationMessage.classList.add('error-message');
+                }
+            } catch (error) {
+                confirmationMessage.textContent = 'Произошла ошибка отправки данных: ' + error.message;
+                confirmationMessage.classList.add('error-message');
+            } finally {
+                loadingIndicator.style.display = 'none';
+            }
         });
+
+ document.getElementById("registration-form").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Отменяем стандартное поведение формы
+
+    const tag = document.getElementById("tag").value;
+    const email = document.getElementById("email").value;
+    const loadingIndicator = document.getElementById("loading-indicator");
+    const confirmationMessage = document.getElementById("confirmation-message");
+
+    // Очистка предыдущих сообщений
+    confirmationMessage.textContent = '';
+    confirmationMessage.classList.remove('error-message', 'success-message');
+
+    // Показываем индикатор загрузки
+    loadingIndicator.style.display = 'block';
+
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ tag, email })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            confirmationMessage.textContent = 'Код подтверждения отправлен на вашу почту!';
+            confirmationMessage.classList.add('success-message');
+            document.getElementById("confirmation-form").style.display = 'block'; // Показываем форму для кода
+            document.getElementById("registration-form").style.display = 'none'; // Скрываем регистрацию
+        } else {
+            confirmationMessage.textContent = 'Ошибка: ' + result.message;
+            confirmationMessage.classList.add('error-message');
+        }
+    } catch (error) {
+        confirmationMessage.textContent = 'Произошла ошибка отправки данных: ' + error.message;
+        confirmationMessage.classList.add('error-message');
+    } finally {
+        loadingIndicator.style.display = 'none';
+    }
+});
+
+        // Функция для отображения профиля с анимацией
+        function displayPlayerProfile(player) {
+            const profile = document.getElementById("profile");
+            document.getElementById("player-name").textContent = "proshka";
+            document.getElementById("player-trophies").textContent = "Трофеи: " + 123;
+            document.getElementById("player-gems").textContent = "Гемы: " + 134;
+            document.getElementById("player-email").textContent = "Email: " + "email";
+
+            // Показать профиль с анимацией
+            profile.style.display = 'flex';
+            profile.classList.add('FadeInUp');
+        }
     </script>
+
 </body>
 
 </html>

@@ -29,9 +29,16 @@ class LogicClaimDailyRewardCommand extends PiranhaMessage{
         const data = new Events().addTokenById(this.b4, this.session.lowID);
         const account = await database.getAccount(this.session.lowID)
 
+        if(this.b4 == 7){
+        account.Resources.Tickets = account.Resources.Tickets + data.reward;
+
+        await database.replaceValue(this.session.lowID, 'Resources', account.Resources);
+        }else{
+
 		account.Resources.Box = account.Resources.Box + data.reward;
 
         await database.replaceValue(this.session.lowID, 'Resources', account.Resources);
+        } 
     }}
 
 module.exports = LogicClaimDailyRewardCommand

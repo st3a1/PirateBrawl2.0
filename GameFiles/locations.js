@@ -8,6 +8,9 @@ function getAllMaps() {
     var BountyHunter = [];
     var CoinRush = [];
     var LaserBall = [];
+    var CTF = []
+    var Takedown = []
+    var LoneStar = []
     const parsedlocations = locations.filter(f => f.Name !== '')
     parsedlocations.forEach(e => {
         if (lineCount >= 1) {
@@ -28,6 +31,15 @@ function getAllMaps() {
                     case "LaserBall":
                         LaserBall.push({ id: lineCount });
                         break;
+                    case "CTF":
+                        CTF.push({ id: lineCount });
+                        break;
+                    case "Takedown":
+                        Takedown.push({ id: lineCount})
+                        break
+                    case "LoneStar":
+                        LoneStar.push({ id: lineCount})
+                        break
                     default:
                         break;
                 }
@@ -49,7 +61,10 @@ function getAllMaps() {
         "BattleRoyaleTeam": BattleRoyaleTeam,
         "BountyHunter": BountyHunter,
         "CoinRush": CoinRush,
-        "LaserBall": LaserBall
+        "LaserBall": LaserBall,
+        "CTF": CTF,
+        "Takedown": Takedown,
+        "LoneStar": LoneStar
     }
 }
 

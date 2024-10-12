@@ -13,7 +13,9 @@
     "cryptoKey": "0c7901240f1c21eec1cef729d0d41f58b3a9b7f6",
     "major": 24,
     "maintence": false,
-    "maintenceEndTime": "2024-10-05T13:00:00Z",
+    "maintenceEndTime": "2024-10-12T11:00:00Z",
+    "SpecialEvent": false,
+    "SpecialEventID": 57,
     "session": {
         "timeoutSeconds": 32
     }

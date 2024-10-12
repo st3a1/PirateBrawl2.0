@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 31" preserveAspectRatio="none">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="Brawl-CTA-Red" transform="translate(1.000000, 0.000000)">
+          <path d="M110.3,30.6 L3,30.6 C2.2,30.6 1.5,29.9 1.5,29.1 L1.5,5.8 C1.5,5 2.2,4.3 3,4.3 L110.4,4.3 C111.2,4.3 111.9,5 111.9,5.8 L111.9,29.2 C111.8,30 111.1,30.6 110.3,30.6 Z" id="Path" fill="#000000" fill-rule="nonzero" opacity="0.33"></path>
+          <path d="M108.9,27.1 L1.5,27.1 C0.7,27.1 0,26.4 0,25.6 L0,2.3 C0,1.5 0.7,0.8 1.5,0.8 L108.9,0.8 C109.7,0.8 110.4,1.5 110.4,2.3 L110.4,25.7 C110.3,26.4 109.7,27.1 108.9,27.1 Z" id="Path" fill="#EFC609" fill-rule="nonzero"></path>
+          <path d="M108.8,27.1 L1.5,27.1 C0.7,27.1 0,26.4 0,25.6 L0,24.3 L110.3,24.3 L110.3,25.6 C110.3,26.4 109.7,27.1 108.8,27.1 Z" id="Path" fill="#C87121" fill-rule="nonzero"></path>
+          <path d="M110.3,3.6 L0,3.6 L0,2.2 C0,1.4 0.6,0.8 1.4,0.8 L108.8,0.8 C109.6,0.8 110.2,1.4 110.2,2.2 L110.3,3.6 L110.3,3.6 Z" id="Path" fill="#FCF044" fill-rule="nonzero"></path>
+          <path d="M104.4,0.9 L109.1,0.9 C109.9,0.9 110.5,1.7 110.4,2.5 L110.1,6.3 L104.4,0.9 Z" id="Path" fill="#FFFEA6" fill-rule="nonzero"></path>
+          <path d="M108.9,27.1 L1.5,27.1 C0.7,27.1 0,26.4 0,25.6 L0,2.3 C0,1.5 0.7,0.8 1.5,0.8 L108.9,0.8 C109.7,0.8 110.4,1.5 110.4,2.3 L110.4,25.7 C110.3,26.4 109.7,27.1 108.9,27.1 Z" id="Path" stroke="#000000"></path>
+      </g>
+  </g>
+</svg>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+        body {
+            font-family: 'Lilita One', cursive;
+            background-color: #000; /* Черный фон */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            background-color: #333; /* Серая панель */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            width: 600px;
+            animation: FadeInUp 0.5s forwards;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #555; /* Цвет фона для иконки */
+            margin-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: #fff; /* Белый текст */
+        }
+
+        .profile-info {
+            flex: 1;
+            text-align: left;
+            color: #fff; /* Белый текст */
+        }
+
+        .profile-info h1 {
+            font-size: 24px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            border-top: 2px solid #444; /* Темно-серая линия */
+            margin: 10px 0;
+        }
+
+        .additional-info {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        @keyframes FadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="profile-container">
+    <div class="profile-img">👤</div>
+    <div class="profile-info">
+        <h1 id="player-name">Имя игрока</h1>
+        <div class="divider"></div>
+        <p class="additional-info" id="player-trophies">Кубки: </p>
+        <p class="additional-info" id="player-gems">Кристаллы: </p>
+        <p class="additional-info" id="player-email">Почта: </p>
+    </div>
+</div>
+
+<script>
+    // Функция для загрузки данных профиля
+    async function loadProfile() {
+        const tag = new URLSearchParams(window.location.search).get('tag'); // Получаем тег из параметров URL
+
+        if (!tag) {
+            alert('Тег игрока не указан');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/profile/${tag}`);
+            const data = await response.json();
+
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+
+            // Заполняем данные профиля
+            document.getElementById('player-name').textContent = data.name;
+            document.getElementById('player-trophies').textContent = `Кубки: ${data.trophies}`;
+            document.getElementById('player-gems').textContent = `Кристаллы: ${data.gems}`;
+            document.getElementById('player-email').textContent = `Почта: ${data.email}`;
+        } catch (error) {
+            console.error('Ошибка при загрузке профиля:', error);
+            alert('Ошибка загрузки профиля');
+        }
+    }
+
+    // Загружаем данные профиля при загрузке страницы
+    window.onload = loadProfile;
+</script>
+
+</body>
+</html>

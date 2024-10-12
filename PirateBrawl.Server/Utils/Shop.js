@@ -57,7 +57,8 @@ class Shop {
         var BrawlerDailyShop = [];
         var skinofDay = [];
 
-        const Random = Math.floor(Math.random() * 1);
+        const Random = Math.floor(Math.random() * 5);
+        const RandomRed = Math.floor(Math.random() * 4);
 
         const commonProperties = {
             "name": "",
@@ -70,18 +71,20 @@ class Shop {
         };
         
         if (Random === 0 || Random > 0) {
-            commonProperties.includes[0].id = 2;
+            commonProperties.includes[0].id = 3;
             commonProperties.includes[0].multiplier = 1;
-            commonProperties.includes[0].skinID = 2
-        /*
         } else if (Random === 1) {
             commonProperties.includes[0].id = 6;
             commonProperties.cost = 0;
         } else if (Random === 2) {
             commonProperties.includes[0].id = 10;
             commonProperties.cost = 40;
-            */
-        } 
+        } else if (Random === 3) {
+            if(RandomRed >= 5) RandomRed = 1
+            commonProperties.includes[0].id = 2;
+            commonProperties.includes[0].multiplier = 1;
+            commonProperties.includes[0].skinID = RandomRed
+        }
         player.Shop.push({ ...commonProperties });
         
         for (let i = 0; i < 5; i++) {

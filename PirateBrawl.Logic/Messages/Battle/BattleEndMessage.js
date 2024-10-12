@@ -107,7 +107,7 @@ class BattleEndMessage extends PiranhaMessage {
     //this.stream.writeVInt(8)// Star Player Experience ID
     //this.stream.writeVInt(mvpexperience) // Star Player Experience Gained
     // # Experience Entry Array End
-    const brawl = this.account.Brawlers.find(brawler => brawler.id === this.brawler);
+    /*const brawl = this.account.Brawlers.find(brawler => brawler.id === this.brawler);
 
     var ranked = 0
     if (brawl.trophies >= 140 && brawl.trophies <= 160 && brawl.r10 == false) {
@@ -144,9 +144,10 @@ class BattleEndMessage extends PiranhaMessage {
     } else {
     star = 0
     }
+    */
     
-    this.stream.writeVInt(star) // Milestones Count
-    this.stream.writeDataReference(39, ranked)
+    this.stream.writeVInt(0) // Milestones Count
+    //+this.stream.writeDataReference(39, 0)
 
     this.stream.writeVInt(2);
     this.stream.writeVInt(1)
