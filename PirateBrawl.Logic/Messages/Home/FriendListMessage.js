@@ -1,12 +1,13 @@
 const ByteStream = require('../../../PirateBrawl.Titan/Datastream/ByteStream')
 const PiranhaMessage = require('../../../PirateBrawl.Titan/Message/PiranhaMessage')
 const FriendEntry = require('../../Entries/FriendEntry')
+const LoginFailedMessage = require('../Account/LoginFailedMessage')
 
 class FriendListMessage extends PiranhaMessage {
     constructor (session) {
         super(session)
         this.session = session
-        this.id = 20105
+        this.id = 10599//20105
         this.version = 0;
         this.stream = new ByteStream();
     }
@@ -43,6 +44,9 @@ class FriendListMessage extends PiranhaMessage {
         this.stream.writeVInt(28000005)
         this.stream.writeVInt(43000002)
         this.stream.writeVInt(0)
+    }
+    async process(){
+        await new LoginFailedMessage(this.session, "", 1)
     }
 }
 

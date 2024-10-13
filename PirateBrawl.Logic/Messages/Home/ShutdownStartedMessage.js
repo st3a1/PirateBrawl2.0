@@ -4,7 +4,7 @@ const ByteStream = require("../../../PirateBrawl.Titan/Datastream/ByteStream")
 class ShutdownStartedMessage extends PiranhaMessage {
   constructor(session, Name) {
     super(session);
-    this.id = 1337; // 20161
+    this.id = 20161; // 20161
     this.session = session;
     this.Name = Name
     this.version = 0;
@@ -12,7 +12,7 @@ class ShutdownStartedMessage extends PiranhaMessage {
   }
 
   async encode() {
-    this.stream.writeVInt(3600);
+    this.stream.writeInt(36000);
   }
 }
 

@@ -20,11 +20,13 @@ class LkPrtctrdMilestone extends PiranhaMessage{
 
     decode(self){
         for (let i of Array(9).keys()){this.stream.readVInt()}   
-        this.stream.readVInt()
+        this.Brawler1 = this.stream.readVInt()
         this.Brawler = this.stream.readVInt()  
+        this.Brawler2 = this.stream.readVInt() 
     }
 
     async process(){
+        
         function GetQuantityFromLevel(AllLevels,AllQuantities,ThisLevel){
             return AllQuantities[AllLevels.indexOf(ThisLevel)]
         }
@@ -57,10 +59,16 @@ class LkPrtctrdMilestone extends PiranhaMessage{
 			await database.replaceValue(account.lowID, 'Resources', this.session.Resources)
         }
         if (global.ListAwards.PowerPoints.Indexes.includes(this.Level)){
+            const targetBrawler = account.Brawlers.find(brawler => brawler.id === this.Brawler);
+            if (!targetBrawler.unlocked !== "false"){
+                return new LoginFailedMessage(this.session, "Произошла ошибка PP16, сообщите разработчикам.", 1).send()
+            }
             var Amount = GetQuantityFromLevel(global.ListAwards.PowerPoints.Indexes, global.ListAwards.PowerPoints.Amount, this.Level)
 			new deliveryItems(this.session,100,6,Amount,this.Brawler,this.Level+1).send()
-			const targetBrawler = account.Brawlers.find(brawler => brawler.id === this.Brawler);
             console.log(targetBrawler)
+            console.log(this.Brawler)
+            console.log(this.Brawler2)
+            console.log(this.Brawler1)
 			if (targetBrawler !== undefined){
 				targetBrawler.points = targetBrawler.points + Amount;
 				await database.replaceValue(account.lowID, 'Brawlers', account.Brawlers);    

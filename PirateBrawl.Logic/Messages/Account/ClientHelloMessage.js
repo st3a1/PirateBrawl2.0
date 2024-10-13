@@ -19,7 +19,7 @@ class ClientCryptoErrorMessage extends PiranhaMessage {
   }
 
   async process() {
-    new LoginFailedMessage(this.session, "Что-то пошло не так, сообщите разработчику о проблеме.\nКод ошибки 10100", 1)
+    new LoginFailedMessage(this.session, "Что-то пошло не так, сообщите разработчику о проблеме.\nКод ошибки 10100", 1).send()
   }
 }
 

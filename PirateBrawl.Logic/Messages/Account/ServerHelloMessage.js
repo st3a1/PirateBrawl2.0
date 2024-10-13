@@ -14,15 +14,15 @@ class ClientCryptoErrorMessage extends PiranhaMessage {
   }
 
   async encode() {
-  ZN14PiranhaMessage6encodeEv((int)a1, a2, a3);
-  ZN10ByteStream8writeIntEi((int)(a1 + 2), a1[20]);
-  ZN10ByteStream8writeIntEi((int)(a1 + 2), a1[21]);
-  ZN10ByteStream8writeIntEi((int)(a1 + 2), a1[22]);
-  ZN10ByteStream8writeIntEi((int)(a1 + 2), a1[23]);
-  ZN10ByteStream8writeIntEi((int)(a1 + 2), a1[24]);
-  ZN10ByteStream20writeStringReferenceERK6String(a1 + 2, (int)(a1 + 0x19));
-  ZN10ByteStream8writeIntEi((int)(a1 + 2), a1[29]);
-  return ZN10ByteStream8writeIntEi((int)(a1 + 2), a1[30]);
+  this.stream.writeInt(0)
+  this.stream.writeInt(0)
+  this.stream.writeInt(0)
+  this.stream.writeInt(0)
+  this.stream.writeInt(0)
+  this.stream.writeString("idk")
+  this.stream.writeInt(0)
+  this.stream.writeInt(0)
+
   }
 }
 

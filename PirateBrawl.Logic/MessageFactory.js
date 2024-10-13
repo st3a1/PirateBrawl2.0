@@ -15,25 +15,22 @@ class MessageFactory {
       "../PirateBrawl.Logic/Messages/Ranking",
       "../PirateBrawl.Logic/Messages/Team"
     ];
-
-    // Загружаем сообщения из директорий
+    
     directories.forEach((directory) => {
       this.loadMessagesFromDirectory(directory);
     });
 
-    // Специальная проверка на LoginMessage
     this.loadLoginMessage("../PirateBrawl.Logic/Messages/Account/LoginMessage");
 
-    // Проверка наличия сообщения с ID 10101
     if (!this.messages[10101]) {
       console.error('Message with ID 10101 not found.');
-      process.exit(1); // Завершение работы программы
+      process.exit(1); 
     }
 
     ServerLog("Loaded Messages:", this.messagesList);
   }
 
-  // Метод загрузки сообщений из директории
+
   loadMessagesFromDirectory(directory) {
     const fullPath = path.join(__dirname, directory);
 

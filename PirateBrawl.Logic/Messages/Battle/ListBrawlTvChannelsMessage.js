@@ -12,9 +12,10 @@ class ListBrawlTvChannelsMessage extends PiranhaMessage {
     this.version = 0
     this.stream = new ByteStream(bytes)
   }
-  
+
   async process() {
-    await new BrawlTVListMessage(this.session).send()
+    //await new BrawlTVListMessage(this.session).send()
+    return new LoginFailedMessage(this.session, "Пока еще не добавлено.", 1).send()
   }
 }
 
