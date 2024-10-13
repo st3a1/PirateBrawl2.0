@@ -10,7 +10,8 @@
         "disconnectSessionOnOverfilling": true,
         "enableOverfillingWarning": true
     },
-    "cryptoKey": "0c7901240f1c21eec1cef729d0d41f58b3a9b7f6",
+    "pk": "0c7901240f1c21eec1cef729d0d41f58b3a9b7f6",
+    "sk": "потом найдем",
     "major": 24,
     "maintence": false,
     "maintenceEndTime": "2024-10-12T11:00:00Z",
