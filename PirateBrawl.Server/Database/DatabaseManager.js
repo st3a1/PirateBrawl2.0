@@ -7,9 +7,9 @@ const clubListCache = new Map();
 
 const pool = mysql.createPool({
   host: 'localhost',
-  user: 'root',
-  password: 'Demon228For!',
-  database: 'idk'
+  user: 'steal',
+  password: 'steal_password',
+  database: 'mix'
 });
 
 pool.execute(`CREATE TABLE IF NOT EXISTS clubs (
@@ -123,7 +123,7 @@ function getBrawlerArray() {
       unlocked: i === 0,
       level: 0,
       points: 0,
-      trophies: 1000,
+      trophies: 0,
       r10: false,
       r15: false,
       r20: false,

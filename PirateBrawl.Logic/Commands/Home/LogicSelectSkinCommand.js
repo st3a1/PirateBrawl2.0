@@ -38,11 +38,12 @@ class LogicSelectSkinCommand extends PiranhaMessage{
     async process(){
         const account = await database.getAccount(this.session.lowID) 
         const Brawler = account.Brawlers.find(brawler => brawler.id === this.BrawlerID);
+        console.log(this.BrawlerID)
         if(Brawler.unlocked){
             this.session.BrawlerID = this.BrawlerID
             this.session.SkinID = this.SkinID
-            await database.replaceValue(this.session.lowID, 'SkinID', this.skinID);
-            await database.replaceValue(this.session.lowID, 'BrawlerID', this.BrawlerID);
+            await database.replaceValue(this.session.lowID, 'SkinID', this.session.SkinID);
+            await database.replaceValue(this.session.lowID, 'BrawlerID', this.session.BrawlerID);
         }else{
             return new LoginFailedMessage(this.session, `Произошла ошибка 506. Перезайдите в игру`, 1).send();
 

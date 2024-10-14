@@ -48,13 +48,14 @@ class LoginMessage extends PiranhaMessage {
   }
 
   async process () {
+    console.warn(`New device detected: ${this.major}, ${this.minor}, ${this.build}`)
 
     const maintenceEndDate = new Date(config.maintenceEndTime);
     const now = new Date();
     const z = maintenceEndDate - now;
     const sectimer = Math.floor(z / 1000);
 
-    if(config.maintence){
+    if(config.maintence && this.session.lowID !== 1){
       await new LoginFailedMessage(this.session, ``, 10, sectimer).send()
       return;
     }

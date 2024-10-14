@@ -26,7 +26,8 @@ class UnlockAccountMessage extends PiranhaMessage {
   async encode () {
     this.stream.writeLong(0, this.session.lowID) // player long
     this.stream.writeString(this.session.token) // token
-    this.stream.writeString("") // то что вводится
+    this.stream.writeString("") // да я че ебу блять
+
     this.stream.writeString() // мб правильный код хз, мне read нулл выдал
   }
 
@@ -35,7 +36,7 @@ class UnlockAccountMessage extends PiranhaMessage {
       new UnlockAccountOkMessage(this.session).send()
       await database.replaceValue(this.session.lowID, 'Banned', false);
     }else{
-      new LoginFailedMessage(this.session, `Код введен неправильно\n\nПерезайдите чтобы повторить процедуру...`, 1).send()
+      new LoginFailedMessage(this.session, `Код введен неправильно.`, 1).send()
     }
   
   }

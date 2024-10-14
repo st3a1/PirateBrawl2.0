@@ -62,6 +62,7 @@ class LkPrtctrdMilestone extends PiranhaMessage{
             const targetBrawler = account.Brawlers.find(brawler => brawler.id === this.Brawler);
             if (!targetBrawler.unlocked !== "false"){
                 return new LoginFailedMessage(this.session, "Произошла ошибка PP16, сообщите разработчикам.", 1).send()
+                await database.replaceValue(account.lowID, 'TrophyRoadTier', account.TrophyRoadTier + 1)
             }
             var Amount = GetQuantityFromLevel(global.ListAwards.PowerPoints.Indexes, global.ListAwards.PowerPoints.Amount, this.Level)
 			new deliveryItems(this.session,100,6,Amount,this.Brawler,this.Level+1).send()

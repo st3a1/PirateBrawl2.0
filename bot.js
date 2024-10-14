@@ -3,17 +3,17 @@ const { Telegraf, Markup } = require('telegraf');
 const LocalSession = require('telegraf-session-local');
 const processHashtag = require('./lowID');
 const config = require('./config.json');
-var tgacc = require('./Laser.Server/tgacc.json');
-const vips = require('./Laser.Server/vips.json');
-const Authors = require('./Laser.Server/Authors.json');
+var tgacc = require('./PirateBrawl.Titan/JSON/tgacc.json');
+const vips = require('./PirateBrawl.Titan/JSON/vips.json');
+const Authors = require("./PirateBrawl.Titan/JSON/Authors.json");
 
-const database = require("./Laser.Server/db");
+const database = require("./PirateBrawl.Server/Database/DatabaseManager");
 
-const token = '';
+const token = '7850274775:AAE3XTlLqzetMKQpoI1F1tJibiOdV9pZ6xI';
 const bot = new Telegraf(token);
 
-const Shop = require("./Utils/Shop");
-const Gameroom = require('./Laser.Server/Gameroom');
+const Shop = require("./PirateBrawl.Server/Utils/Shop");
+const Gameroom = require('./PirateBrawl.Server/Utils/Gameroom');
 const gameroomInstance = new Gameroom();
 
 const session = new LocalSession({

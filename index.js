@@ -145,7 +145,7 @@ server.on('connection', async (session) => {
   }
   global.ipSessions.get(sessionIp).push(session.id);
 
-  session.log(`New connect: (SESSIONID: ${session.id})`);
+  session.log(`New connect: (Кол-во: ${session.id})`);
   global.online += 1;
 
   const MessageHandler = new MessagesHandler(session, Messages);
@@ -209,6 +209,7 @@ server.on('connection', async (session) => {
       return destroySession(session, "log", "Client disconnected.");
     }
 
+
     try {
       destroySession(session, "err", "A wild error!");
       return console.error(error);
@@ -247,6 +248,14 @@ server.once("listening", () => {
     process.exit(0x0);
   });
 });
+console.log(global.sessions.length)
+const bot = require('./bot');
+bot.launch()
+  .then(() => {
+    console.log("Bot started");
+  })
+  .catch((err) => {
+  });
 
 server.listen(PORT);
 

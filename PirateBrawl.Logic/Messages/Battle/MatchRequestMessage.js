@@ -35,6 +35,7 @@ class MatchRequestMessage extends PiranhaMessage {
   }
   global.players += 1
 	new MatchMakingStatusMessage(this.session, this.EventSlot).send();
+  new LoginFailedMessage(this.session, "In the moment, plaing is avaivable ONLY IN FRIENDLY GAMES!", 1).send()
   }
 }
 

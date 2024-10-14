@@ -1,9 +1,9 @@
 {
-    "admins": [1156896214,6500319575],
+    "admins": [7429025172],
     "port": 9339,
-    "serverName": "Mix Brawl",
-    "BotPREMIUM": "@tailerbrawlbot",
-    "updateLink": "https://t.me/tailerbrawl/42",
+    "serverName": "Mix",
+    "BotPREMIUM": "@st3a1",
+    "updateLink": "https://t.me/mixbrawlclose",
     "disableQueuebugtxtFile": true,
     "queue": {
         "maxSize": 8192,
@@ -14,7 +14,7 @@
     "sk": "потом найдем",
     "major": 24,
     "maintence": false,
-    "maintenceEndTime": "2024-10-12T11:00:00Z",
+    "maintenceEndTime": "2024-10-14T16:30:00Z",
     "SpecialEvent": false,
     "SpecialEventID": 57,
     "session": {

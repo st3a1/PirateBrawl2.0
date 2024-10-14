@@ -6,7 +6,7 @@
     "type": 0,
     "includes": [
       {
-        "id": 3,
+        "id": 10,
         "multiplier": 1,
         "dataRef": [
           16,
@@ -15,78 +15,6 @@
         "skinID": 0
       }
     ],
-    "EndDate": "2024-06-30T09:00:00.000Z"
-  },
-  {
-    "name": "День 1",
-    "cost": 0,
-    "ShopDisplay": 0,
-    "type": 0,
-    "includes": [
-      {
-        "id": 10,
-        "multiplier": 1,
-        "dataRef": [
-          0,
-          0
-        ],
-        "skinID": 0
-      }
-    ],
-    "EndDate": "2024-07-02T09:00:00.000Z"
-  },
-  {
-    "name": "День 2",
-    "cost": 0,
-    "ShopDisplay": 0,
-    "type": 0,
-    "includes": [
-      {
-        "id": 9,
-        "multiplier": 500,
-        "dataRef": [
-          0,
-          0
-        ],
-        "skinID": 0
-      }
-    ],
-    "EndDate": "2024-07-03T09:00:00.000Z"
-  },
-  {
-    "name": "День 3",
-    "cost": 0,
-    "ShopDisplay": 0,
-    "type": 0,
-    "includes": [
-      {
-        "id": 1,
-        "multiplier": 500,
-        "dataRef": [
-          0,
-          0
-        ],
-        "skinID": 0
-      }
-    ],
-    "EndDate": "2024-07-04T09:00:00.000Z"
-  },
-  {
-    "name": "День 4",
-    "cost": 0,
-    "ShopDisplay": 0,
-    "type": 0,
-    "includes": [
-      {
-        "id": 14,
-        "multiplier": 1,
-        "dataRef": [
-          0,
-          0
-        ],
-        "skinID": 0
-      }
-    ],
-    "EndDate": "2024-07-05T09:00:00.000Z"
+    "EndDate": "2024-10-15T09:00:00.000Z"
   }
 ]

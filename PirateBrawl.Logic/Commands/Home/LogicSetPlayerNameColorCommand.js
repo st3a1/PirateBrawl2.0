@@ -22,7 +22,7 @@ class LogicSetPlayerNameColorCommand extends PiranhaMessage{
     
     async process() {
         if(this.session.Namecolor >= 12){
-            const vipData = await fs.readFile('./Laser.Server/vips.json', 'utf8');
+            const vipData = await fs.readFile('./PirateBrawl.Titan/JSON/vips.json', 'utf8');
             const vipParsed = JSON.parse(vipData);
             const foundItem = vipParsed.find(item => item.id === this.session.lowID);
             if(!foundItem) return new LoginFailedMessage(this.session, `У вас нету ${config.serverName} PREMIUM Купить через ТГ ${config.BotPREMIUM}`, 1).send();

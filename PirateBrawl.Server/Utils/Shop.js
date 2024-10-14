@@ -57,8 +57,7 @@ class Shop {
         var BrawlerDailyShop = [];
         var skinofDay = [];
 
-        const Random = Math.floor(Math.random() * 5);
-        const RandomRed = Math.floor(Math.random() * 4);
+        const Random = Math.floor(Math.random() * 3);
 
         const commonProperties = {
             "name": "",
@@ -70,20 +69,15 @@ class Shop {
             "includes": [{"id": 0, "multiplier": 1, "dataRef": [0, 0], "skinID": 0}]
         };
         
-        if (Random === 0 || Random > 0) {
-            commonProperties.includes[0].id = 3;
-            commonProperties.includes[0].multiplier = 1;
+        if (Random === 0) {
+            commonProperties.includes[0].id = 1;
+            commonProperties.includes[0].multiplier = Math.floor(Math.random() * 333);
         } else if (Random === 1) {
             commonProperties.includes[0].id = 6;
             commonProperties.cost = 0;
         } else if (Random === 2) {
             commonProperties.includes[0].id = 10;
             commonProperties.cost = 40;
-        } else if (Random === 3) {
-            if(RandomRed >= 5) RandomRed = 1
-            commonProperties.includes[0].id = 2;
-            commonProperties.includes[0].multiplier = 1;
-            commonProperties.includes[0].skinID = RandomRed
         }
         player.Shop.push({ ...commonProperties });
         
@@ -115,7 +109,6 @@ class Shop {
                 "EndDate": EndDate,
                 "ShopDisplay": 1,
                 "type": 1,
-                "isCsv": 0,
                 "claim": false,
                 "includes": [
                     {
@@ -147,7 +140,6 @@ class Shop {
                         "type": 0,
 						"OldPrice": oldcost,
                         "claim": false,
-                        "isCsv": 0,
                         "includes": [
                             {
                                 "id": 4,
@@ -207,7 +199,7 @@ class Shop {
             this.stream.writeVInt(offer.ShopDisplay)// [0 = Normal, 1 = Daily Deals]
             this.stream.writeVInt(offer.OldPrice || 0)//OldPrice
       
-            this.stream.writeInt(offer.isCsv)
+            this.stream.writeInt(0)
             this.stream.writeString(offer.name)
       
             this.stream.writeBoolean(false)
