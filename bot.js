@@ -9,7 +9,7 @@ const Authors = require("./PirateBrawl.Titan/JSON/Authors.json");
 
 const database = require("./PirateBrawl.Server/Database/DatabaseManager");
 
-const token = '7850274775:AAE3XTlLqzetMKQpoI1F1tJibiOdV9pZ6xI';
+const token = null;
 const bot = new Telegraf(token);
 
 const Shop = require("./PirateBrawl.Server/Utils/Shop");
@@ -29,13 +29,11 @@ bot.use(session.middleware());
 
 bot.command('start', async (ctx) => {
     try {
-        const message = await ctx.reply(`💫 | Привет!\n\nЗдесь ты сможешь привязать аккаунт в ${config.serverName}Brawl`,
+        const message = await ctx.reply(`💫 | Добро пожаловать в бота для донатов [Mix Brawl](${"https://t.me/mixbrawlclose"})\n\nЗдесь ты сможешь купить донат и поддержать свой любимый сервер ${config.serverName}Brawl`,
         {
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
-                    [{ text: 'Привязать Аккаунт', callback_data: 'ConnectAccount' },
-                    { text: 'Мои аккаунты', callback_data: `MyAccounts` }],
                     [{ text: '💰 Донат', callback_data: `DonateMenu` },{ text: '👥 Поддержка', callback_data: `Supports` }]
                 ]
             }
@@ -89,7 +87,7 @@ bot.on('text', async (ctx) => {
                 const playerId = processHashtag(tag);
 
                 if (playerId === 0){
-                    await ctx.telegram.editMessageText(ctx.message.chat.id, ctx.session.MessageID, null,`🔌 | Вы неправильно указали тег! [Как узнать свой тег?](${"https://telegra.ph/Kak-uznat-svoj-TEG-ID-v-TailerBrawl-06-17"})\n\nВам нужно написать свой тег. (пример: #2PP)`,
+                    await ctx.telegram.editMessageText(ctx.message.chat.id, ctx.session.MessageID, null,`🔌 | Вы неправильно указали тег! [Как узнать свой тег?](${"https://telegra.ph/Gde-najti-TEG-igroka-10-15"})\n\nВам нужно написать свой тег. (пример: #2PP)`,
                         {
                             reply_markup: {inline_keyboard: [[{ text: `◀ Назад`, callback_data: `MainMenu` }]]},
                             parse_mode: 'Markdown' 
@@ -198,7 +196,7 @@ bot.on('text', async (ctx) => {
                 const playerId = processHashtag(tag);
         
                 if (playerId === 0){
-                    await ctx.telegram.editMessageText(ctx.message.chat.id, ctx.session.MessageID, null,`🔌 | Вы неправильно указали тег! [Как узнать тег?](${"https://telegra.ph/Kak-uznat-svoj-TEG-ID-v-TailerBrawl-06-17"})`,
+                    await ctx.telegram.editMessageText(ctx.message.chat.id, ctx.session.MessageID, null,`🔌 | Вы неправильно указали тег! [Как узнать тег?](${"https://telegra.ph/Gde-najti-TEG-igroka-10-15"})`,
                         {
                             reply_markup: {inline_keyboard: [[{ text: `◀ Назад`, callback_data: `MainMenu` }]]},
                             parse_mode: 'Markdown' 
@@ -248,7 +246,7 @@ bot.on('text', async (ctx) => {
                 const playerId = processHashtag(tag);
         
                 if (playerId === 0){
-                    await ctx.telegram.editMessageText(ctx.message.chat.id, ctx.session.MessageID, null,`🔌 | Вы неправильно указали тег! [Как узнать тег?](${"https://telegra.ph/Kak-uznat-svoj-TEG-ID-v-TailerBrawl-06-17"})\n\nИсправь ошибки, отправь тег сново!`,
+                    await ctx.telegram.editMessageText(ctx.message.chat.id, ctx.session.MessageID, null,`🔌 | Вы неправильно указали тег! [Как узнать тег?](${"https://telegra.ph/Gde-najti-TEG-igroka-10-15"})\n\nИсправь ошибки, отправь тег сново!`,
                         {
                             reply_markup: {inline_keyboard: [[{ text: `◀ Назад`, callback_data: `MainMenu` }]]},
                             parse_mode: 'Markdown' 
@@ -258,7 +256,7 @@ bot.on('text', async (ctx) => {
                 }
         
                 ctx.session.enterTag = false;
-                await ctx.telegram.editMessageText(ctx.message.chat.id, ctx.session.MessageID, null,`Для оплаты перейдите по [сыллке (ЖМИ СЮДА)](https://www.donationalerts.com/r/itdlaloxov)\n\nУкажите сумму: ${ctx.session.cost}\nМесто никнейма или коментария напишите тег: ${tag}`,
+                await ctx.telegram.editMessageText(ctx.message.chat.id, ctx.session.MessageID, null,`Для оплаты перейдите по [сыллке (ЖМИ СЮДА)](https://pay.cloudtips.ru/p/9d269722)\n\nУкажите сумму: ${ctx.session.cost}\nВ комментарии напишите свой тег: ${tag}\nПЕРЕВОДИТЕ ТОЧНУЮ СУММУ, ЕСЛИ ОШИБЕТЕСЬ В СУММЕ ТО МЫ ИМЕЕМ ПРАВО НЕ ВЫДАВАТЬ ТОВАР И РАСЦЕНИТЬ ОПЛАТУ КАК ПОДАРОК1`,
                     {
                         reply_markup: {inline_keyboard: [[{ text: `◀ Назад`, callback_data: `MainMenu` }]]},
                         parse_mode: 'Markdown' 
@@ -458,10 +456,19 @@ bot.on('text', async (ctx) => {
               const playerId = processHashtag(commandParams[1]);
               const account = await database.getAccount(parseInt(playerId))
               var find2vip = tgacc.find(e => e.lowID === playerId)
-              if(find2vip !== null) await ctx.telegram.sendMessage(find2vip.id, `Вы получили ${config.serverName}Premium\nУдачной игры!`);
+              //if(find2vip !== null) await ctx.telegram.sendMessage(find2vip.id, `Вы получили ${config.serverName}Premium\nУдачной игры!`);
               if(account){
-                account.Resources.Gems += 170;
-                await database.replaceValue(parseInt(playerId), 'Resources', account.Resources)
+                account.Notification.push({
+                    ID: 89,
+                    index: account.Notification.length+1,
+                    reward: 170,
+                    type: 0,
+                    date: new Date(),
+                    claim: false,
+                    text: ``
+                  })
+                  
+                  await database.replaceValue(playerId, 'Notification', account.Notification);
                 const newVip = { id: parseInt(playerId) };
                 vips.push(newVip);
                 fs.writeFile('./Laser.Server/vips.json', JSON.stringify(vips, null, 2), (err) => {
@@ -581,14 +588,7 @@ bot.on('text', async (ctx) => {
 bot.on('callback_query', async (ctx) => {
     const query = ctx.callbackQuery;
     switch(query.data){
-        case "ConnectAccount": {
-            await ConnectAccount(ctx);
-            break;
-        };
-        case "MyAccounts": {
-            await AccountsList(ctx);
-            break;
-        };
+
         case "DonateMenu": {
             await DonateMenu(ctx);
             break;
@@ -629,7 +629,7 @@ bot.on('callback_query', async (ctx) => {
 async function Supports(ctx) {
     try {
         await ctx.answerCbQuery();
-        const messageText = `✅ | Задать любой вопрос/помочь решить проблему пишите - @sb0manager!`;
+        const messageText = `✅ | Задать любой вопрос/помочь решить проблему пишите - @thestealdev!`;
         await ctx.telegram.editMessageText(
             ctx.chat.id, ctx.session.MessageID, null,
             messageText,
@@ -648,11 +648,11 @@ async function SPT(ctx) {
     await ctx.answerCbQuery();
     ctx.session.cost = parseInt(ctx.callbackQuery.data.split('_')[1]);
     var msg = ""
-    if(ctx.session.cost === 99) msg = `${config.serverName} Premium!`
-    if(ctx.session.cost !== 99) msg = `Кристаллы!`
+    if(ctx.session.cost === 99) msg = `${config.serverName} premium`
+    if(ctx.session.cost !== 99) msg = `кристаллы`
     ctx.session.enterTag = true;
     await ctx.editMessageText(
-        `👇 Введите тег аккаунта, на который ты получишь ${msg} Вводите тег внимательно.\n[Как узнать тег? (ЖМИ СЮДА)](${"https://telegra.ph/Kak-uznat-svoj-TEG-ID-v-TailerBrawl-06-17"})`,
+        `👇 Введи свой #ТЕГ аккаунта на который ты получишь ${msg} Вводи свой тег внимательно.\n[Как узнать тег? (ЖМИ СЮДА)](${"https://telegra.ph/Gde-najti-TEG-igroka-10-15"})`,
         {
             reply_markup: {inline_keyboard: [[{ text: `◀ Назад`, callback_data: `MainMenu` }]]},
             parse_mode: 'Markdown' 
@@ -664,8 +664,8 @@ async function PremiumInfo(ctx){
     try {
         await ctx.answerCbQuery();
         await ctx.editMessageText(
-            `Цена НАВСЕГДА: 99 рублей (49 украинских гривен).\n\n` +
-            `${config.serverName} Premium — подписка на ${config.serverName} Brawl, при оформлении которой ты значительно поддерживаешь проект и получаете привилегии на нашем сервере.\n\n` +
+            `Цена НАВСЕГДА: 99 рублей.\n\n` +
+            `Mix Premium — подписка на ${config.serverName} Brawl, при оформлении которой ты значительно поддерживаешь проект и получаете привилегии на нашем сервере.\n\n` +
             `Что входит в подписку?\n` +
             `— 170 гемов на аккаунт\n` +
             `— уникальные градиент-цвета ника, которые доступны только игрокам с ${config.serverName} Premium\n` +
@@ -688,7 +688,7 @@ async function UnlinkAccount(ctx) {
     try {
         await ctx.answerCbQuery();
         let accountID = parseInt(ctx.callbackQuery.data.split('_')[1]);
-        const messageText = `✅ | Ваш Аккаунт был успешно отвязан от TailerID!`;
+        const messageText = `унт был у от `;
         tgacc = tgacc.filter(e => e.lowID !== accountID);
         fs.writeFile('./Laser.Server/tgacc.json', JSON.stringify(tgacc, null, 2), (err) => {if (err) {console.error('Ошибка сохранения файла с конфигурацией:', err)}});
         await ctx.telegram.editMessageText(
@@ -750,7 +750,7 @@ async function HandleAccount(ctx) {
 async function ConnectAccount(ctx) {
     try {
         await ctx.answerCbQuery();
-        const messageText = `🔌 | Для привязки аккаунта, отправьте свой тег.\n\n[Как узнать свой тег?](${"https://telegra.ph/Kak-uznat-svoj-TEG-ID-v-TailerBrawl-06-17"})`;
+        const messageText = `Mix Connect переехал на сайт в игре\nПерейдите во вкладку "Новости".`;
         ctx.session.ConnectAccount = true;
         await ctx.telegram.editMessageText(
             ctx.chat.id, ctx.session.MessageID, null,
@@ -778,7 +778,7 @@ async function AccountsList(ctx) {
         ListKeyboard.push([{ text: `◀ Назад`, callback_data: `MainMenu` }])
         await ctx.telegram.editMessageText(
             ctx.chat.id, ctx.session.MessageID, null,
-            `📃 | Список ваших привязанных аккаунтов:`,
+            `Недоступно в боте`,
             {
                 reply_markup: {inline_keyboard: ListKeyboard}
             }
@@ -798,11 +798,11 @@ async function DonateMenu(ctx) {
                 reply_markup: {
                     inline_keyboard: [
                         [{ text: `${config.serverName} Premium`, callback_data: `PremiumInfo` }],
-                        [{ text: `150 Кристаллов`, callback_data: `SPT_40` }],
-                        [{ text: `300 Кристаллов`, callback_data: `SPT_120` }],
-                        [{ text: `500 Кристаллов`, callback_data: `SPT_230` }],
-                        [{ text: `1000 Кристаллов`, callback_data: `SPT_460` }],
-                        [{ text: `2000 Кристаллов`, callback_data: `SPT_600` }],
+                        [{ text: `170 Кристаллов`, callback_data: `SPT_100` }],
+                        [{ text: `360 Кристаллов`, callback_data: `SPT_150` }],
+                        [{ text: `950 Кристаллов`, callback_data: `SPT_250` }],
+                        [{ text: `2000 Кристаллов`, callback_data: `SPT_400` }],
+                        [{ text: `4500 Кристаллов`, callback_data: `SPT_600` }],
                         [{ text: `◀ Назад`, callback_data: `MainMenu` }]
                     ]
                 }
@@ -822,8 +822,6 @@ async function MainMenu(ctx) {
             {
                 reply_markup: {
                     inline_keyboard: [
-                        [{ text: 'Привязать Аккаунт', callback_data: 'ConnectAccount' },
-                        { text: 'Мои аккаунты', callback_data: `MyAccounts` }],
                         [{ text: '💰 Донат', callback_data: `DonateMenu` },{ text: '👥 Поддержка', callback_data: `Supports` }]
                     ]
                 }

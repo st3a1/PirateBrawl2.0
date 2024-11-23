@@ -195,16 +195,14 @@
         <div id="loading-indicator" class="loading"></div>
 
         <div id="profile" class="profile">
-            <!-- Левая часть с иконкой профиля -->
             <div class="profile-img">
-                <img src="https://via.placeholder.com/80" alt="Profile Icon"> <!-- Иконка временная -->
-                <h3 id="player-name"></h3> <!-- Имя под иконкой -->
+                <img src="https://via.placeholder.com/80" alt="Profile Icon">
+                <h3 id="player-name"></h3>
             </div>
 
-            <!-- Вертикальная черта -->
             <div class="divider"></div>
 
-            <!-- Правая часть с информацией -->
+
             <div class="profile-info">
                 <p id="player-trophies"></p>
                 <p id="player-gems"></p>
@@ -222,11 +220,9 @@
             const loadingIndicator = document.getElementById("loading-indicator");
             const confirmationMessage = document.getElementById("confirmation-message");
 
-            // Очистка предыдущих сообщений
             confirmationMessage.textContent = '';
             confirmationMessage.classList.remove('error-message', 'success-message');
 
-            // Показываем индикатор загрузки
             loadingIndicator.style.display = 'block';
 
             try {
@@ -243,8 +239,8 @@
                 if (response.ok) {
                     confirmationMessage.textContent = 'Код подтверждения отправлен на вашу почту!';
                     confirmationMessage.classList.add('success-message');
-                    document.getElementById("confirmation-form").style.display = 'block'; // Показываем форму для кода
-                    document.getElementById("registration-form").style.display = 'none'; // Скрываем регистрацию
+                    document.getElementById("confirmation-form").style.display = 'block';
+                    document.getElementById("registration-form").style.display = 'none';
                 } else {
                     confirmationMessage.textContent = 'Ошибка: ' + result.message;
                     confirmationMessage.classList.add('error-message');
@@ -258,18 +254,16 @@
         });
 
  document.getElementById("registration-form").addEventListener("submit", async function (event) {
-    event.preventDefault(); // Отменяем стандартное поведение формы
+    event.preventDefault();
 
     const tag = document.getElementById("tag").value;
     const email = document.getElementById("email").value;
     const loadingIndicator = document.getElementById("loading-indicator");
     const confirmationMessage = document.getElementById("confirmation-message");
 
-    // Очистка предыдущих сообщений
     confirmationMessage.textContent = '';
     confirmationMessage.classList.remove('error-message', 'success-message');
 
-    // Показываем индикатор загрузки
     loadingIndicator.style.display = 'block';
 
     try {
@@ -286,8 +280,8 @@
         if (response.ok) {
             confirmationMessage.textContent = 'Код подтверждения отправлен на вашу почту!';
             confirmationMessage.classList.add('success-message');
-            document.getElementById("confirmation-form").style.display = 'block'; // Показываем форму для кода
-            document.getElementById("registration-form").style.display = 'none'; // Скрываем регистрацию
+            document.getElementById("confirmation-form").style.display = 'block';
+            document.getElementById("registration-form").style.display = 'none';
         } else {
             confirmationMessage.textContent = 'Ошибка: ' + result.message;
             confirmationMessage.classList.add('error-message');
@@ -300,7 +294,6 @@
     }
 });
 
-        // Функция для отображения профиля с анимацией
         function displayPlayerProfile(player) {
             const profile = document.getElementById("profile");
             document.getElementById("player-name").textContent = "proshka";
@@ -308,7 +301,6 @@
             document.getElementById("player-gems").textContent = "Гемы: " + 134;
             document.getElementById("player-email").textContent = "Email: " + "email";
 
-            // Показать профиль с анимацией
             profile.style.display = 'flex';
             profile.classList.add('FadeInUp');
         }

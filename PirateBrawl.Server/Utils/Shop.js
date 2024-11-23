@@ -8,7 +8,7 @@ class Shop {
 
     loadShopArray() {
         try {
-            const data = fs.readFileSync('../../PirateBrawl.Titan/JSON/offers.json', 'utf8');
+            const data = fs.readFileSync('./PirateBrawl.Titan/JSON/offers.json', 'utf8');
             return JSON.parse(data);
         } catch (error) {
             console.error('Error reading offers.json:', error.message);
@@ -203,7 +203,7 @@ class Shop {
             this.stream.writeString(offer.name)
       
             this.stream.writeBoolean(false)
-            this.stream.writeString("")
+            this.stream.writeString("offer_xmas")
 
         }
     }
